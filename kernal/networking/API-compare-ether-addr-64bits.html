@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>compare_ether_addr_64bits</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="Linux Networking and Network Devices APIs" /><link rel="up" href="netdev.html#idp37220116" title="Driver Support" /><link rel="prev" href="API-compare-ether-addr.html" title="compare_ether_addr" /><link rel="next" href="API-is-etherdev-addr.html" title="is_etherdev_addr" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"><span class="phrase">compare_ether_addr_64bits</span></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="API-compare-ether-addr.html">Prev</a> </td><th width="60%" align="center">Driver Support</th><td width="20%" align="right"> <a accesskey="n" href="API-is-etherdev-addr.html">Next</a></td></tr></table><hr /></div><div class="refentry"><a id="API-compare-ether-addr-64bits"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>compare_ether_addr_64bits — 
+     Compare two Ethernet addresses
+ </p></div><div class="refsynopsisdiv"><h2>Synopsis</h2><div class="funcsynopsis"><table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;"><tr><td><code class="funcdef">unsigned <strong class="fsfunc">compare_ether_addr_64bits </strong>(</code></td><td>const u8 <var class="pdparam">addr1[6+2]</var>, </td></tr><tr><td> </td><td>const u8 <var class="pdparam">addr2[6+2]</var><code>)</code>;</td></tr></table><div class="funcprototype-spacer"> </div></div></div><div class="refsect1"><a id="idp37932324"></a><h2>Arguments</h2><div class="variablelist"><dl class="variablelist"><dt><span class="term"><em class="parameter"><code>addr1[6+2]</code></em></span></dt><dd><p>
+     Pointer to an array of 8 bytes
+    </p></dd><dt><span class="term"><em class="parameter"><code>addr2[6+2]</code></em></span></dt><dd><p>
+     Pointer to an other array of 8 bytes
+    </p></dd></dl></div></div><div class="refsect1"><a id="idp37934988"></a><h2>Description</h2><p>
+   Compare two ethernet addresses, returns 0 if equal.
+   Same result than <span class="quote">“<span class="quote">memcmp(addr1, addr2, ETH_ALEN)</span>”</span> but without conditional
+   branches, and possibly long word memory accesses on CPU allowing cheap
+   unaligned memory reads.
+   arrays = { byte1, byte2, byte3, byte4, byte6, byte7, pad1, pad2}
+   </p><p>
+
+   Please note that alignment of addr1 &amp; addr2 is only guaranted to be 16 bits.
+</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="API-compare-ether-addr.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="netdev.html#idp37220116">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="API-is-etherdev-addr.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"><span class="phrase">compare_ether_addr</span> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> <span class="phrase">is_etherdev_addr</span></td></tr></table></div></body></html>

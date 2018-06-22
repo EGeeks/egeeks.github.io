@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>struct bus_type</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="Linux Device Drivers" /><link rel="up" href="devdrivers.html#idp26013572" title="The Basic Device Driver-Model Structures" /><link rel="prev" href="devdrivers.html" title="Chapter 2. Device drivers infrastructure" /><link rel="next" href="API-struct-device-driver.html" title="struct device_driver" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"><span class="phrase">struct bus_type</span></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="devdrivers.html">Prev</a> </td><th width="60%" align="center">The Basic Device Driver-Model Structures </th><td width="20%" align="right"> <a accesskey="n" href="API-struct-device-driver.html">Next</a></td></tr></table><hr /></div><div class="refentry"><a id="API-struct-bus-type"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>struct bus_type — 
+  The bus type of the device
+ </p></div><div class="refsynopsisdiv"><h2>Synopsis</h2><pre class="programlisting">
+struct bus_type {
+  const char * name;
+  struct bus_attribute * bus_attrs;
+  struct device_attribute * dev_attrs;
+  struct driver_attribute * drv_attrs;
+  int (* match) (struct device *dev, struct device_driver *drv);
+  int (* uevent) (struct device *dev, struct kobj_uevent_env *env);
+  int (* probe) (struct device *dev);
+  int (* remove) (struct device *dev);
+  void (* shutdown) (struct device *dev);
+  int (* suspend) (struct device *dev, pm_message_t state);
+  int (* resume) (struct device *dev);
+  const struct dev_pm_ops * pm;
+  struct subsys_private * p;
+};  </pre></div><div class="refsect1"><a id="idp26018316"></a><h2>Members</h2><div class="variablelist"><dl class="variablelist"><dt><span class="term">name</span></dt><dd><p>
+The name of the bus.
+      </p></dd><dt><span class="term">bus_attrs</span></dt><dd><p>
+Default attributes of the bus.
+      </p></dd><dt><span class="term">dev_attrs</span></dt><dd><p>
+Default attributes of the devices on the bus.
+      </p></dd><dt><span class="term">drv_attrs</span></dt><dd><p>
+Default attributes of the device drivers on the bus.
+      </p></dd><dt><span class="term">match</span></dt><dd><p>
+Called, perhaps multiple times, whenever a new device or driver
+is added for this bus. It should return a nonzero value if the
+given device can be handled by the given driver.
+      </p></dd><dt><span class="term">uevent</span></dt><dd><p>
+Called when a device is added, removed, or a few other things
+that generate uevents to add the environment variables.
+      </p></dd><dt><span class="term">probe</span></dt><dd><p>
+Called when a new device or driver add to this bus, and callback
+the specific driver's probe to initial the matched device.
+      </p></dd><dt><span class="term">remove</span></dt><dd><p>
+Called when a device removed from this bus.
+      </p></dd><dt><span class="term">shutdown</span></dt><dd><p>
+Called at shut-down time to quiesce the device.
+      </p></dd><dt><span class="term">suspend</span></dt><dd><p>
+Called when a device on this bus wants to go to sleep mode.
+      </p></dd><dt><span class="term">resume</span></dt><dd><p>
+Called to bring a device on this bus out of sleep mode.
+      </p></dd><dt><span class="term">pm</span></dt><dd><p>
+Power management operations of this bus, callback the specific
+device driver's pm-ops.
+      </p></dd><dt><span class="term">p</span></dt><dd><p>
+The private data of the driver core, only the driver core can
+touch this.
+      </p></dd></dl></div></div><div class="refsect1"><a id="idp26028572"></a><h2>Description</h2><p>
+   A bus is a channel between the processor and one or more devices. For the
+   purposes of the device model, all devices are connected via a bus, even if
+   it is an internal, virtual, <span class="quote">“<span class="quote">platform</span>”</span> bus. Buses can plug into each other.
+   A USB controller is usually a PCI device, for example. The device model
+   represents the actual connections between buses and the devices they control.
+   A bus is represented by the bus_type structure. It contains the name, the
+   default attributes, the bus' methods, PM operations, and the driver core's
+   private data.
+</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="devdrivers.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="devdrivers.html#idp26013572">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="API-struct-device-driver.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 2. Device drivers infrastructure </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> <span class="phrase">struct device_driver</span></td></tr></table></div></body></html>

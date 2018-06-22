@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Chapter 2. DRM Internals</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="Linux DRM Developer's Guide" /><link rel="up" href="index.html" title="Linux DRM Developer's Guide" /><link rel="prev" href="drmIntroduction.html" title="Chapter 1. Introduction" /><link rel="next" href="ch02s02.html" title="Driver load" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 2. DRM Internals</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="drmIntroduction.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch02s02.html">Next</a></td></tr></table><hr /></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="drmInternals"></a>Chapter 2. DRM Internals</h1></div></div></div><div class="toc"><p><strong>Table of Contents</strong></p><dl class="toc"><dt><span class="sect1"><a href="drmInternals.html#idp47931412">Driver initialization</a></span></dt><dt><span class="sect1"><a href="ch02s02.html">Driver load</a></span></dt><dd><dl><dt><span class="sect2"><a href="ch02s02.html#idp48784180">Driver private &amp; performance counters</a></span></dt><dt><span class="sect2"><a href="ch02s02.html#idp48498140">Configuring the device</a></span></dt><dt><span class="sect2"><a href="ch02s02.html#idp47134828">Memory manager initialization</a></span></dt><dt><span class="sect2"><a href="ch02s02.html#idp47546508">Output configuration</a></span></dt></dl></dd><dt><span class="sect1"><a href="ch02s03.html">VBlank event handling</a></span></dt><dt><span class="sect1"><a href="ch02s04.html">Memory management</a></span></dt><dd><dl><dt><span class="sect2"><a href="ch02s04.html#idp47968340">The Translation Table Manager (TTM)</a></span></dt><dt><span class="sect2"><a href="ch02s04.html#idp48545588">The Graphics Execution Manager (GEM)</a></span></dt></dl></dd><dt><span class="sect1"><a href="ch02s05.html">Output management</a></span></dt><dt><span class="sect1"><a href="ch02s06.html">Framebuffer management</a></span></dt><dt><span class="sect1"><a href="ch02s07.html">Command submission &amp; fencing</a></span></dt><dt><span class="sect1"><a href="ch02s08.html">Suspend/resume</a></span></dt><dt><span class="sect1"><a href="ch02s09.html">DMA services</a></span></dt></dl></div><p>
+      This chapter documents DRM internals relevant to driver authors
+      and developers working to add support for the latest features to
+      existing drivers.
+    </p><p>
+      First, we'll go over some typical driver initialization
+      requirements, like setting up command buffers, creating an
+      initial output configuration, and initializing core services.
+      Subsequent sections will cover core internals in more detail,
+      providing implementation notes and examples.
+    </p><p>
+      The DRM layer provides several services to graphics drivers,
+      many of them driven by the application interfaces it provides
+      through libdrm, the library that wraps most of the DRM ioctls.
+      These include vblank event handling, memory
+      management, output management, framebuffer management, command
+      submission &amp; fencing, suspend/resume support, and DMA
+      services.
+    </p><p>
+      The core of every DRM driver is struct drm_driver.  Drivers
+      will typically statically initialize a drm_driver structure,
+      then pass it to drm_init() at load time.
+    </p><div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp47931412"></a>Driver initialization</h2></div></div></div><p>
+      Before calling the DRM initialization routines, the driver must
+      first create and fill out a struct drm_driver structure.
+    </p><pre class="programlisting">
+      static struct drm_driver driver = {
+	/* don't use mtrr's here, the Xserver or user space app should
+	 * deal with them for intel hardware.
+	 */
+	.driver_features =
+	    DRIVER_USE_AGP | DRIVER_REQUIRE_AGP |
+	    DRIVER_HAVE_IRQ | DRIVER_IRQ_SHARED | DRIVER_MODESET,
+	.load = i915_driver_load,
+	.unload = i915_driver_unload,
+	.firstopen = i915_driver_firstopen,
+	.lastclose = i915_driver_lastclose,
+	.preclose = i915_driver_preclose,
+	.save = i915_save,
+	.restore = i915_restore,
+	.device_is_agp = i915_driver_device_is_agp,
+	.get_vblank_counter = i915_get_vblank_counter,
+	.enable_vblank = i915_enable_vblank,
+	.disable_vblank = i915_disable_vblank,
+	.irq_preinstall = i915_driver_irq_preinstall,
+	.irq_postinstall = i915_driver_irq_postinstall,
+	.irq_uninstall = i915_driver_irq_uninstall,
+	.irq_handler = i915_driver_irq_handler,
+	.reclaim_buffers = drm_core_reclaim_buffers,
+	.get_map_ofs = drm_core_get_map_ofs,
+	.get_reg_ofs = drm_core_get_reg_ofs,
+	.fb_probe = intelfb_probe,
+	.fb_remove = intelfb_remove,
+	.fb_resize = intelfb_resize,
+	.master_create = i915_master_create,
+	.master_destroy = i915_master_destroy,
+#if defined(CONFIG_DEBUG_FS)
+	.debugfs_init = i915_debugfs_init,
+	.debugfs_cleanup = i915_debugfs_cleanup,
+#endif
+	.gem_init_object = i915_gem_init_object,
+	.gem_free_object = i915_gem_free_object,
+	.gem_vm_ops = &amp;i915_gem_vm_ops,
+	.ioctls = i915_ioctls,
+	.fops = {
+		.owner = THIS_MODULE,
+		.open = drm_open,
+		.release = drm_release,
+		.ioctl = drm_ioctl,
+		.mmap = drm_mmap,
+		.poll = drm_poll,
+		.fasync = drm_fasync,
+#ifdef CONFIG_COMPAT
+		.compat_ioctl = i915_compat_ioctl,
+#endif
+		.llseek = noop_llseek,
+		},
+	.pci_driver = {
+		.name = DRIVER_NAME,
+		.id_table = pciidlist,
+		.probe = probe,
+		.remove = __devexit_p(drm_cleanup_pci),
+		},
+	.name = DRIVER_NAME,
+	.desc = DRIVER_DESC,
+	.date = DRIVER_DATE,
+	.major = DRIVER_MAJOR,
+	.minor = DRIVER_MINOR,
+	.patchlevel = DRIVER_PATCHLEVEL,
+      };
+    </pre><p>
+      In the example above, taken from the i915 DRM driver, the driver
+      sets several flags indicating what core features it supports.
+      We'll go over the individual callbacks in later sections.  Since
+      flags indicate which features your driver supports to the DRM
+      core, you need to set most of them prior to calling drm_init().  Some,
+      like DRIVER_MODESET can be set later based on user supplied parameters,
+      but that's the exception rather than the rule.
+    </p><div class="variablelist"><p class="title"><strong>Driver flags</strong></p><dl class="variablelist"><dt><span class="term">DRIVER_USE_AGP</span></dt><dd><p>
+	    Driver uses AGP interface
+	</p></dd><dt><span class="term">DRIVER_REQUIRE_AGP</span></dt><dd><p>
+	    Driver needs AGP interface to function.
+	</p></dd><dt><span class="term">DRIVER_USE_MTRR</span></dt><dd><p>
+	    Driver uses MTRR interface for mapping memory.  Deprecated.
+	  </p></dd><dt><span class="term">DRIVER_PCI_DMA</span></dt><dd><p>
+	    Driver is capable of PCI DMA.  Deprecated.
+	</p></dd><dt><span class="term">DRIVER_SG</span></dt><dd><p>
+	    Driver can perform scatter/gather DMA.  Deprecated.
+	</p></dd><dt><span class="term">DRIVER_HAVE_DMA</span></dt><dd><p>Driver supports DMA.  Deprecated.</p></dd><dt><span class="term">DRIVER_HAVE_IRQ, </span><span class="term">DRIVER_IRQ_SHARED</span></dt><dd><p>
+	    DRIVER_HAVE_IRQ indicates whether the driver has a IRQ
+	    handler, DRIVER_IRQ_SHARED indicates whether the device &amp;
+	    handler support shared IRQs (note that this is required of
+	    PCI drivers).
+	  </p></dd><dt><span class="term">DRIVER_DMA_QUEUE</span></dt><dd><p>
+	    If the driver queues DMA requests and completes them
+	    asynchronously, this flag should be set.  Deprecated.
+	  </p></dd><dt><span class="term">DRIVER_FB_DMA</span></dt><dd><p>
+	    Driver supports DMA to/from the framebuffer.  Deprecated.
+	  </p></dd><dt><span class="term">DRIVER_MODESET</span></dt><dd><p>
+	    Driver supports mode setting interfaces.
+	  </p></dd></dl></div><p>
+      In this specific case, the driver requires AGP and supports
+      IRQs.  DMA, as we'll see, is handled by device specific ioctls
+      in this case.  It also supports the kernel mode setting APIs, though
+      unlike in the actual i915 driver source, this example unconditionally
+      exports KMS capability.
+    </p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="drmIntroduction.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ch02s02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 1. Introduction </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Driver load</td></tr></table></div></body></html>

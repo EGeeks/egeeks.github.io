@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>struct nand_ecc_ctrl</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="MTD NAND Driver Programming Interface" /><link rel="up" href="structs.html" title="Chapter 9. Structures" /><link rel="prev" href="API-struct-nand-hw-control.html" title="struct nand_hw_control" /><link rel="next" href="API-struct-nand-buffers.html" title="struct nand_buffers" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"><span class="phrase">struct nand_ecc_ctrl</span></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="API-struct-nand-hw-control.html">Prev</a> </td><th width="60%" align="center">Chapter 9. Structures</th><td width="20%" align="right"> <a accesskey="n" href="API-struct-nand-buffers.html">Next</a></td></tr></table><hr /></div><div class="refentry"><a id="API-struct-nand-ecc-ctrl"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>struct nand_ecc_ctrl — 
+     Control structure for ecc
+ </p></div><div class="refsynopsisdiv"><h2>Synopsis</h2><pre class="programlisting">
+struct nand_ecc_ctrl {
+  nand_ecc_modes_t mode;
+  int steps;
+  int size;
+  int bytes;
+  int total;
+  int prepad;
+  int postpad;
+  struct nand_ecclayout * layout;
+  void * priv;
+  void (* hwctl) (struct mtd_info *mtd, int mode);
+  int (* calculate) (struct mtd_info *mtd, const uint8_t *dat,uint8_t *ecc_code);
+  int (* correct) (struct mtd_info *mtd, uint8_t *dat, uint8_t *read_ecc,uint8_t *calc_ecc);
+  int (* read_page_raw) (struct mtd_info *mtd, struct nand_chip *chip,uint8_t *buf, int page);
+  void (* write_page_raw) (struct mtd_info *mtd, struct nand_chip *chip,const uint8_t *buf);
+  int (* read_page) (struct mtd_info *mtd, struct nand_chip *chip,uint8_t *buf, int page);
+  int (* read_subpage) (struct mtd_info *mtd, struct nand_chip *chip,uint32_t offs, uint32_t len, uint8_t *buf);
+  void (* write_page) (struct mtd_info *mtd, struct nand_chip *chip,const uint8_t *buf);
+  int (* read_oob) (struct mtd_info *mtd, struct nand_chip *chip, int page,int sndcmd);
+  int (* write_oob) (struct mtd_info *mtd, struct nand_chip *chip,int page);
+};  </pre></div><div class="refsect1"><a id="idp25520308"></a><h2>Members</h2><div class="variablelist"><dl class="variablelist"><dt><span class="term">mode</span></dt><dd><p>
+   ecc mode
+      </p></dd><dt><span class="term">steps</span></dt><dd><p>
+   number of ecc steps per page
+      </p></dd><dt><span class="term">size</span></dt><dd><p>
+   data bytes per ecc step
+      </p></dd><dt><span class="term">bytes</span></dt><dd><p>
+   ecc bytes per step
+      </p></dd><dt><span class="term">total</span></dt><dd><p>
+   total number of ecc bytes per page
+      </p></dd><dt><span class="term">prepad</span></dt><dd><p>
+   padding information for syndrome based ecc generators
+      </p></dd><dt><span class="term">postpad</span></dt><dd><p>
+   padding information for syndrome based ecc generators
+      </p></dd><dt><span class="term">layout</span></dt><dd><p>
+   ECC layout control struct pointer
+      </p></dd><dt><span class="term">priv</span></dt><dd><p>
+   pointer to private ecc control data
+      </p></dd><dt><span class="term">hwctl</span></dt><dd><p>
+   function to control hardware ecc generator. Must only
+   be provided if an hardware ECC is available
+      </p></dd><dt><span class="term">calculate</span></dt><dd><p>
+   function for ecc calculation or readback from ecc hardware
+      </p></dd><dt><span class="term">correct</span></dt><dd><p>
+   function for ecc correction, matching to ecc generator (sw/hw)
+      </p></dd><dt><span class="term">read_page_raw</span></dt><dd><p>
+   function to read a raw page without ECC
+      </p></dd><dt><span class="term">write_page_raw</span></dt><dd><p>
+   function to write a raw page without ECC
+      </p></dd><dt><span class="term">read_page</span></dt><dd><p>
+   function to read a page according to the ecc generator
+   requirements.
+      </p></dd><dt><span class="term">read_subpage</span></dt><dd><p>
+   function to read parts of the page covered by ECC.
+      </p></dd><dt><span class="term">write_page</span></dt><dd><p>
+   function to write a page according to the ecc generator
+   requirements.
+      </p></dd><dt><span class="term">read_oob</span></dt><dd><p>
+   function to read chip OOB data
+      </p></dd><dt><span class="term">write_oob</span></dt><dd><p>
+   function to write chip OOB data
+      </p></dd></dl></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="API-struct-nand-hw-control.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="structs.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="API-struct-nand-buffers.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"><span class="phrase">struct nand_hw_control</span> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> <span class="phrase">struct nand_buffers</span></td></tr></table></div></body></html>

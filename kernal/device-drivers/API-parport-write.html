@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>parport_write</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="Linux Device Drivers" /><link rel="up" href="parportdev.html" title="Chapter 3. Parallel Port Devices" /><link rel="prev" href="API-parport-negotiate.html" title="parport_negotiate" /><link rel="next" href="API-parport-read.html" title="parport_read" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"><span class="phrase">parport_write</span></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="API-parport-negotiate.html">Prev</a> </td><th width="60%" align="center">Chapter 3. Parallel Port Devices</th><td width="20%" align="right"> <a accesskey="n" href="API-parport-read.html">Next</a></td></tr></table><hr /></div><div class="refentry"><a id="API-parport-write"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>parport_write — 
+     write a block of data to a parallel port
+ </p></div><div class="refsynopsisdiv"><h2>Synopsis</h2><div class="funcsynopsis"><table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;"><tr><td><code class="funcdef">ssize_t <strong class="fsfunc">parport_write </strong>(</code></td><td>struct parport * <var class="pdparam">port</var>, </td></tr><tr><td> </td><td>const void * <var class="pdparam">buffer</var>, </td></tr><tr><td> </td><td>size_t <var class="pdparam">len</var><code>)</code>;</td></tr></table><div class="funcprototype-spacer"> </div></div></div><div class="refsect1"><a id="idp27180820"></a><h2>Arguments</h2><div class="variablelist"><dl class="variablelist"><dt><span class="term"><em class="parameter"><code>port</code></em></span></dt><dd><p>
+     port to write to
+    </p></dd><dt><span class="term"><em class="parameter"><code>buffer</code></em></span></dt><dd><p>
+     data buffer (in kernel space)
+    </p></dd><dt><span class="term"><em class="parameter"><code>len</code></em></span></dt><dd><p>
+     number of bytes of data to transfer
+    </p></dd></dl></div></div><div class="refsect1"><a id="idp27184484"></a><h2>Description</h2><p>
+   This will write up to <em class="parameter"><code>len</code></em> bytes of <em class="parameter"><code>buffer</code></em> to the port
+   specified, using the IEEE 1284 transfer mode most recently
+   negotiated to (using <code class="function">parport_negotiate</code>), as long as that
+   mode supports forward transfers (host to peripheral).
+   </p><p>
+
+   It is the caller's responsibility to ensure that the first
+   <em class="parameter"><code>len</code></em> bytes of <em class="parameter"><code>buffer</code></em> are valid.
+   </p><p>
+
+   This function returns the number of bytes transferred (if zero
+   or positive), or else an error code.
+</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="API-parport-negotiate.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="parportdev.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="API-parport-read.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"><span class="phrase">parport_negotiate</span> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> <span class="phrase">parport_read</span></td></tr></table></div></body></html>

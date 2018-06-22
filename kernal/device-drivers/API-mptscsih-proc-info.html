@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>mptscsih_proc_info</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="Linux Device Drivers" /><link rel="up" href="message_devices.html#idp27373476" title="Fusion message devices" /><link rel="prev" href="API-mptscsih-info.html" title="mptscsih_info" /><link rel="next" href="API-mptscsih-qcmd.html" title="mptscsih_qcmd" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"><span class="phrase">mptscsih_proc_info</span></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="API-mptscsih-info.html">Prev</a> </td><th width="60%" align="center">Fusion message devices</th><td width="20%" align="right"> <a accesskey="n" href="API-mptscsih-qcmd.html">Next</a></td></tr></table><hr /></div><div class="refentry"><a id="API-mptscsih-proc-info"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>mptscsih_proc_info — 
+     Return information about MPT adapter
+ </p></div><div class="refsynopsisdiv"><h2>Synopsis</h2><div class="funcsynopsis"><table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;"><tr><td><code class="funcdef">int <strong class="fsfunc">mptscsih_proc_info </strong>(</code></td><td>struct Scsi_Host * <var class="pdparam">host</var>, </td></tr><tr><td> </td><td>char * <var class="pdparam">buffer</var>, </td></tr><tr><td> </td><td>char ** <var class="pdparam">start</var>, </td></tr><tr><td> </td><td>off_t <var class="pdparam">offset</var>, </td></tr><tr><td> </td><td>int <var class="pdparam">length</var>, </td></tr><tr><td> </td><td>int <var class="pdparam">func</var><code>)</code>;</td></tr></table><div class="funcprototype-spacer"> </div></div></div><div class="refsect1"><a id="idp28177692"></a><h2>Arguments</h2><div class="variablelist"><dl class="variablelist"><dt><span class="term"><em class="parameter"><code>host</code></em></span></dt><dd><p>
+     scsi host struct
+    </p></dd><dt><span class="term"><em class="parameter"><code>buffer</code></em></span></dt><dd><p>
+     if write, user data; if read, buffer for user
+    </p></dd><dt><span class="term"><em class="parameter"><code>start</code></em></span></dt><dd><p>
+     returns the buffer address
+    </p></dd><dt><span class="term"><em class="parameter"><code>offset</code></em></span></dt><dd><p>
+     if write, 0; if read, the current offset into the buffer from
+     the previous read.
+    </p></dd><dt><span class="term"><em class="parameter"><code>length</code></em></span></dt><dd><p>
+     if write, return length;
+    </p></dd><dt><span class="term"><em class="parameter"><code>func</code></em></span></dt><dd><p>
+     write = 1; read = 0
+    </p></dd></dl></div></div><div class="refsect1"><a id="idp28184476"></a><h2>Description</h2><p>
+   (linux scsi_host_template.info routine)
+</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="API-mptscsih-info.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="message_devices.html#idp27373476">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="API-mptscsih-qcmd.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"><span class="phrase">mptscsih_info</span> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> <span class="phrase">mptscsih_qcmd</span></td></tr></table></div></body></html>

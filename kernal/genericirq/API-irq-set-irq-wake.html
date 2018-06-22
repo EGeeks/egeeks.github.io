@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>irq_set_irq_wake</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="Linux generic IRQ handling" /><link rel="up" href="pubfunctions.html" title="Chapter 8. Public Functions Provided" /><link rel="prev" href="API-enable-irq.html" title="enable_irq" /><link rel="next" href="API-setup-irq.html" title="setup_irq" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"><span class="phrase">irq_set_irq_wake</span></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="API-enable-irq.html">Prev</a> </td><th width="60%" align="center">Chapter 8. Public Functions Provided</th><td width="20%" align="right"> <a accesskey="n" href="API-setup-irq.html">Next</a></td></tr></table><hr /></div><div class="refentry"><a id="API-irq-set-irq-wake"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>irq_set_irq_wake — 
+     control irq power management wakeup
+ </p></div><div class="refsynopsisdiv"><h2>Synopsis</h2><div class="funcsynopsis"><table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;"><tr><td><code class="funcdef">int <strong class="fsfunc">irq_set_irq_wake </strong>(</code></td><td>unsigned int <var class="pdparam">irq</var>, </td></tr><tr><td> </td><td>unsigned int <var class="pdparam">on</var><code>)</code>;</td></tr></table><div class="funcprototype-spacer"> </div></div></div><div class="refsect1"><a id="idp45337100"></a><h2>Arguments</h2><div class="variablelist"><dl class="variablelist"><dt><span class="term"><em class="parameter"><code>irq</code></em></span></dt><dd><p>
+     interrupt to control
+    </p></dd><dt><span class="term"><em class="parameter"><code>on</code></em></span></dt><dd><p>
+     enable/disable power management wakeup
+    </p></dd></dl></div></div><div class="refsect1"><a id="idp45339676"></a><h2>Description</h2><p>
+   Enable/disable power management wakeup mode, which is
+   disabled by default.  Enables and disables must match,
+   just as they match for non-wakeup mode support.
+   </p><p>
+
+   Wakeup mode lets this IRQ wake the system from sleep
+   states like <span class="quote">“<span class="quote">suspend to RAM</span>”</span>.
+</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="API-enable-irq.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="pubfunctions.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="API-setup-irq.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"><span class="phrase">enable_irq</span> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> <span class="phrase">setup_irq</span></td></tr></table></div></body></html>

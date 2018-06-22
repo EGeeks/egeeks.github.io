@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>VBlank event handling</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="Linux DRM Developer's Guide" /><link rel="up" href="drmInternals.html" title="Chapter 2. DRM Internals" /><link rel="prev" href="ch02s02.html" title="Driver load" /><link rel="next" href="ch02s04.html" title="Memory management" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">VBlank event handling</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch02s02.html">Prev</a> </td><th width="60%" align="center">Chapter 2. DRM Internals</th><td width="20%" align="right"> <a accesskey="n" href="ch02s04.html">Next</a></td></tr></table><hr /></div><div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp48545724"></a>VBlank event handling</h2></div></div></div><p>
+      The DRM core exposes two vertical blank related ioctls:
+      DRM_IOCTL_WAIT_VBLANK and DRM_IOCTL_MODESET_CTL.
+
+    </p><p>
+      DRM_IOCTL_WAIT_VBLANK takes a struct drm_wait_vblank structure
+      as its argument, and is used to block or request a signal when a
+      specified vblank event occurs.
+    </p><p>
+      DRM_IOCTL_MODESET_CTL should be called by application level
+      drivers before and after mode setting, since on many devices the
+      vertical blank counter will be reset at that time.  Internally,
+      the DRM snapshots the last vblank count when the ioctl is called
+      with the _DRM_PRE_MODESET command so that the counter won't go
+      backwards (which is dealt with when _DRM_POST_MODESET is used).
+    </p><p>
+      To support the functions above, the DRM core provides several
+      helper functions for tracking vertical blank counters, and
+      requires drivers to provide several callbacks:
+      get_vblank_counter(), enable_vblank() and disable_vblank().  The
+      core uses get_vblank_counter() to keep the counter accurate
+      across interrupt disable periods.  It should return the current
+      vertical blank event count, which is often tracked in a device
+      register.  The enable and disable vblank callbacks should enable
+      and disable vertical blank interrupts, respectively.  In the
+      absence of DRM clients waiting on vblank events, the core DRM
+      code will use the disable_vblank() function to disable
+      interrupts, which saves power.  They'll be re-enabled again when
+      a client calls the vblank wait ioctl above.
+    </p><p>
+      Devices that don't provide a count register can simply use an
+      internal atomic counter incremented on every vertical blank
+      interrupt, and can make their enable and disable vblank
+      functions into no-ops.
+    </p></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch02s02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="drmInternals.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch02s04.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Driver load </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Memory management</td></tr></table></div></body></html>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>mca_write_pos</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="MCA Driver Programming Interface" /><link rel="up" href="pubfunctions.html" title="Chapter 3. Public Functions Provided" /><link rel="prev" href="API-mca-read-pos.html" title="mca_read_pos" /><link rel="next" href="API-mca-set-adapter-name.html" title="mca_set_adapter_name" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"><span class="phrase">mca_write_pos</span></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="API-mca-read-pos.html">Prev</a> </td><th width="60%" align="center">Chapter 3. Public Functions Provided</th><td width="20%" align="right"> <a accesskey="n" href="API-mca-set-adapter-name.html">Next</a></td></tr></table><hr /></div><div class="refentry"><a id="API-mca-write-pos"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>mca_write_pos — 
+     read POS register from card
+ </p></div><div class="refsynopsisdiv"><h2>Synopsis</h2><div class="funcsynopsis"><table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;"><tr><td><code class="funcdef">void <strong class="fsfunc">mca_write_pos </strong>(</code></td><td>int <var class="pdparam">slot</var>, </td></tr><tr><td> </td><td>int <var class="pdparam">reg</var>, </td></tr><tr><td> </td><td>unsigned char <var class="pdparam">byte</var><code>)</code>;</td></tr></table><div class="funcprototype-spacer"> </div></div></div><div class="refsect1"><a id="idp28753036"></a><h2>Arguments</h2><div class="variablelist"><dl class="variablelist"><dt><span class="term"><em class="parameter"><code>slot</code></em></span></dt><dd><p>
+     slot number to read from
+    </p></dd><dt><span class="term"><em class="parameter"><code>reg</code></em></span></dt><dd><p>
+     register to read from
+    </p></dd><dt><span class="term"><em class="parameter"><code>byte</code></em></span></dt><dd><p>
+     byte to write to the POS registers
+    </p></dd></dl></div></div><div class="refsect1"><a id="idp28756620"></a><h2>Description</h2><p>
+   Store a POS value directly from the hardware. You should not
+   normally need to use this function and should have a very good
+   knowledge of MCA bus before you do so. Doing this wrongly can
+   damage the hardware.
+   </p><p>
+
+   This function may not be used from interrupt context.
+   </p><p>
+
+   Note that this a technically a Bad Thing, as IBM tech stuff says
+   you should only set POS values through their utilities.
+   However, some devices such as the 3c523 recommend that you write
+   back some data to make sure the configuration is consistent.
+   I'd say that IBM is right, but I like my drivers to work.
+   </p><p>
+
+   This function can't do checks to see if multiple devices end up
+   with the same resources, so you might see magic smoke if someone
+   screws up.
+</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="API-mca-read-pos.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="pubfunctions.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="API-mca-set-adapter-name.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"><span class="phrase">mca_read_pos</span> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> <span class="phrase">mca_set_adapter_name</span></td></tr></table></div></body></html>

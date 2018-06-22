@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>vfs_setlease</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="Linux Filesystems API" /><link rel="up" href="file_locks.html" title="File Locks" /><link rel="prev" href="API-generic-setlease.html" title="generic_setlease" /><link rel="next" href="API-flock-lock-file-wait.html" title="flock_lock_file_wait" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"><span class="phrase">vfs_setlease</span></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="API-generic-setlease.html">Prev</a> </td><th width="60%" align="center">File Locks</th><td width="20%" align="right"> <a accesskey="n" href="API-flock-lock-file-wait.html">Next</a></td></tr></table><hr /></div><div class="refentry"><a id="API-vfs-setlease"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>vfs_setlease — 
+     sets a lease on an open file
+ </p></div><div class="refsynopsisdiv"><h2>Synopsis</h2><div class="funcsynopsis"><table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;"><tr><td><code class="funcdef">int <strong class="fsfunc">vfs_setlease </strong>(</code></td><td>struct file * <var class="pdparam">filp</var>, </td></tr><tr><td> </td><td>long <var class="pdparam">arg</var>, </td></tr><tr><td> </td><td>struct file_lock ** <var class="pdparam">lease</var><code>)</code>;</td></tr></table><div class="funcprototype-spacer"> </div></div></div><div class="refsect1"><a id="idp24705908"></a><h2>Arguments</h2><div class="variablelist"><dl class="variablelist"><dt><span class="term"><em class="parameter"><code>filp</code></em></span></dt><dd><p>
+     file pointer
+    </p></dd><dt><span class="term"><em class="parameter"><code>arg</code></em></span></dt><dd><p>
+     type of lease to obtain
+    </p></dd><dt><span class="term"><em class="parameter"><code>lease</code></em></span></dt><dd><p>
+     file_lock to use
+    </p></dd></dl></div></div><div class="refsect1"><a id="idp24709380"></a><h2>Description</h2><p>
+   Call this to establish a lease on the file.
+   The (*lease)-&gt;fl_lmops-&gt;fl_break operation must be set; if not,
+   break_lease will oops!
+   </p><p>
+
+   This will call the filesystem's setlease file method, if
+   defined.  Note that there is no getlease method; instead, the
+   filesystem setlease method should call back to <code class="function">setlease</code> to
+   add a lease to the inode's lease list, where <code class="function">fcntl_getlease</code> can
+   find it.  Since <code class="function">fcntl_getlease</code> only reports whether the current
+   task holds a lease, a cluster filesystem need only do this for
+   leases held by processes on this node.
+   </p><p>
+
+   There is also no break_lease method; filesystems that
+   handle their own leases should break leases themselves from the
+   filesystem's open, create, and (on truncate) setattr methods.
+</p></div><div class="refsect1"><a id="idp24712156"></a><h2>Warning</h2><p>
+   the only current setlease methods exist only to disable
+   leases in certain cases.  More vfs changes may be required to
+   allow a full filesystem lease implementation.
+</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="API-generic-setlease.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="file_locks.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="API-flock-lock-file-wait.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"><span class="phrase">generic_setlease</span> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> <span class="phrase">flock_lock_file_wait</span></td></tr></table></div></body></html>

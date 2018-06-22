@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>mca_set_dma_mode</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="The Linux Kernel API" /><link rel="up" href="ch09s07.html#idp43189900" title="MCA Bus DMA" /><link rel="prev" href="API-mca-set-dma-io.html" title="mca_set_dma_io" /><link rel="next" href="firmware.html" title="Chapter 10. Firmware Interfaces" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"><span class="phrase">mca_set_dma_mode</span></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="API-mca-set-dma-io.html">Prev</a> </td><th width="60%" align="center">MCA Bus DMA</th><td width="20%" align="right"> <a accesskey="n" href="firmware.html">Next</a></td></tr></table><hr /></div><div class="refentry"><a id="API-mca-set-dma-mode"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>mca_set_dma_mode — 
+     set the DMA mode
+ </p></div><div class="refsynopsisdiv"><h2>Synopsis</h2><div class="funcsynopsis"><table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;"><tr><td><code class="funcdef">void <strong class="fsfunc">mca_set_dma_mode </strong>(</code></td><td>unsigned int <var class="pdparam">dmanr</var>, </td></tr><tr><td> </td><td>unsigned int <var class="pdparam">mode</var><code>)</code>;</td></tr></table><div class="funcprototype-spacer"> </div></div></div><div class="refsect1"><a id="idp43249092"></a><h2>Arguments</h2><div class="variablelist"><dl class="variablelist"><dt><span class="term"><em class="parameter"><code>dmanr</code></em></span></dt><dd><p>
+     DMA channel
+    </p></dd><dt><span class="term"><em class="parameter"><code>mode</code></em></span></dt><dd><p>
+     mode to set
+    </p></dd></dl></div></div><div class="refsect1"><a id="idp43251716"></a><h2>Description</h2><p>
+   The DMA controller supports several modes. The mode values you can
+   set are-
+   </p><p>
+
+   <code class="constant">MCA_DMA_MODE_READ</code> when reading from the DMA device.
+   </p><p>
+
+   <code class="constant">MCA_DMA_MODE_WRITE</code> to writing to the DMA device.
+   </p><p>
+
+   <code class="constant">MCA_DMA_MODE_IO</code> to do DMA to or from an I/O port.
+   </p><p>
+
+   <code class="constant">MCA_DMA_MODE_16</code> to do 16bit transfers.
+</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="API-mca-set-dma-io.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch09s07.html#idp43189900">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="firmware.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"><span class="phrase">mca_set_dma_io</span> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Chapter 10. Firmware Interfaces</td></tr></table></div></body></html>

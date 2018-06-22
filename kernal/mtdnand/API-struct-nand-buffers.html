@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>struct nand_buffers</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="MTD NAND Driver Programming Interface" /><link rel="up" href="structs.html" title="Chapter 9. Structures" /><link rel="prev" href="API-struct-nand-ecc-ctrl.html" title="struct nand_ecc_ctrl" /><link rel="next" href="API-struct-nand-chip.html" title="struct nand_chip" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"><span class="phrase">struct nand_buffers</span></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="API-struct-nand-ecc-ctrl.html">Prev</a> </td><th width="60%" align="center">Chapter 9. Structures</th><td width="20%" align="right"> <a accesskey="n" href="API-struct-nand-chip.html">Next</a></td></tr></table><hr /></div><div class="refentry"><a id="API-struct-nand-buffers"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>struct nand_buffers — 
+     buffer structure for read/write
+ </p></div><div class="refsynopsisdiv"><h2>Synopsis</h2><pre class="programlisting">
+struct nand_buffers {
+  uint8_t ecccalc[NAND_MAX_OOBSIZE];
+  uint8_t ecccode[NAND_MAX_OOBSIZE];
+  uint8_t databuf[NAND_MAX_PAGESIZE + NAND_MAX_OOBSIZE];
+};  </pre></div><div class="refsect1"><a id="idp25537860"></a><h2>Members</h2><div class="variablelist"><dl class="variablelist"><dt><span class="term">ecccalc[NAND_MAX_OOBSIZE]</span></dt><dd><p>
+   buffer for calculated ecc
+      </p></dd><dt><span class="term">ecccode[NAND_MAX_OOBSIZE]</span></dt><dd><p>
+   buffer for ecc read from flash
+      </p></dd><dt><span class="term">databuf[NAND_MAX_PAGESIZE + NAND_MAX_OOBSIZE]</span></dt><dd><p>
+   buffer for data - dynamically sized
+      </p></dd></dl></div></div><div class="refsect1"><a id="idp25540564"></a><h2>Description</h2><p>
+   Do not change the order of buffers. databuf and oobrbuf must be in
+   consecutive order.
+</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="API-struct-nand-ecc-ctrl.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="structs.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="API-struct-nand-chip.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"><span class="phrase">struct nand_ecc_ctrl</span> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> <span class="phrase">struct nand_chip</span></td></tr></table></div></body></html>

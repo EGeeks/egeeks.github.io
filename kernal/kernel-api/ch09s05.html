@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>PCI Support Library</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="The Linux Kernel API" /><link rel="up" href="hardware.html" title="Chapter 9. Hardware Interfaces" /><link rel="prev" href="API-mtrr-del.html" title="mtrr_del" /><link rel="next" href="API-pci-bus-max-busnr.html" title="pci_bus_max_busnr" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">PCI Support Library</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="API-mtrr-del.html">Prev</a> </td><th width="60%" align="center">Chapter 9. Hardware Interfaces</th><td width="20%" align="right"> <a accesskey="n" href="API-pci-bus-max-busnr.html">Next</a></td></tr></table><hr /></div><div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp42027844"></a>PCI Support Library</h2></div></div></div><div class="toc"><dl class="toc"><dt><span class="refentrytitle"><a href="API-pci-bus-max-busnr.html"><span class="phrase">pci_bus_max_busnr</span></a></span><span class="refpurpose"> — 
+  returns maximum PCI bus number of given bus' children
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-find-capability.html"><span class="phrase">pci_find_capability</span></a></span><span class="refpurpose"> — 
+     query for devices' capabilities
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-bus-find-capability.html"><span class="phrase">pci_bus_find_capability</span></a></span><span class="refpurpose"> — 
+     query for devices' capabilities
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-find-ext-capability.html"><span class="phrase">pci_find_ext_capability</span></a></span><span class="refpurpose"> — 
+     Find an extended capability
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-find-next-ht-capability.html"><span class="phrase">pci_find_next_ht_capability</span></a></span><span class="refpurpose"> — 
+     query a device's Hypertransport capabilities
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-find-ht-capability.html"><span class="phrase">pci_find_ht_capability</span></a></span><span class="refpurpose"> — 
+     query a device's Hypertransport capabilities
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-find-parent-resource.html"><span class="phrase">pci_find_parent_resource</span></a></span><span class="refpurpose"> — 
+     return resource region of parent bus of given region
+ </span></dt><dt><span class="refentrytitle"><a href="API---pci-complete-power-transition.html"><span class="phrase">__pci_complete_power_transition</span></a></span><span class="refpurpose"> — 
+     Complete power transition of a PCI device
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-set-power-state.html"><span class="phrase">pci_set_power_state</span></a></span><span class="refpurpose"> — 
+     Set the power state of a PCI device
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-choose-state.html"><span class="phrase">pci_choose_state</span></a></span><span class="refpurpose"> — 
+     Choose the power state of a PCI device
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-save-state.html"><span class="phrase">pci_save_state</span></a></span><span class="refpurpose"> — 
+     save the PCI configuration space of a device before suspending
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-restore-state.html"><span class="phrase">pci_restore_state</span></a></span><span class="refpurpose"> — 
+     Restore the saved state of a PCI device
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-store-saved-state.html"><span class="phrase">pci_store_saved_state</span></a></span><span class="refpurpose"> — 
+     Allocate and return an opaque struct containing the device saved state.
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-load-saved-state.html"><span class="phrase">pci_load_saved_state</span></a></span><span class="refpurpose"> — 
+     Reload the provided save state into struct pci_dev.
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-load-and-free-saved-state.html"><span class="phrase">pci_load_and_free_saved_state</span></a></span><span class="refpurpose"> — 
+     Reload the save state pointed to by state, and free the memory allocated for it.
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-reenable-device.html"><span class="phrase">pci_reenable_device</span></a></span><span class="refpurpose"> — 
+     Resume abandoned device
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-enable-device-io.html"><span class="phrase">pci_enable_device_io</span></a></span><span class="refpurpose"> — 
+     Initialize a device for use with IO space
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-enable-device-mem.html"><span class="phrase">pci_enable_device_mem</span></a></span><span class="refpurpose"> — 
+     Initialize a device for use with Memory space
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-enable-device.html"><span class="phrase">pci_enable_device</span></a></span><span class="refpurpose"> — 
+     Initialize device before it's used by a driver.
+ </span></dt><dt><span class="refentrytitle"><a href="API-pcim-enable-device.html"><span class="phrase">pcim_enable_device</span></a></span><span class="refpurpose"> — 
+     Managed <code class="function">pci_enable_device</code>
+ </span></dt><dt><span class="refentrytitle"><a href="API-pcim-pin-device.html"><span class="phrase">pcim_pin_device</span></a></span><span class="refpurpose"> — 
+     Pin managed PCI device
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-disable-device.html"><span class="phrase">pci_disable_device</span></a></span><span class="refpurpose"> — 
+     Disable PCI device after use
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-set-pcie-reset-state.html"><span class="phrase">pci_set_pcie_reset_state</span></a></span><span class="refpurpose"> — 
+     set reset state for device dev
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-pme-capable.html"><span class="phrase">pci_pme_capable</span></a></span><span class="refpurpose"> — 
+     check the capability of PCI device to generate PME#
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-pme-active.html"><span class="phrase">pci_pme_active</span></a></span><span class="refpurpose"> — 
+     enable or disable PCI device's PME# function
+ </span></dt><dt><span class="refentrytitle"><a href="API---pci-enable-wake.html"><span class="phrase">__pci_enable_wake</span></a></span><span class="refpurpose"> — 
+     enable PCI device as wakeup event source
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-wake-from-d3.html"><span class="phrase">pci_wake_from_d3</span></a></span><span class="refpurpose"> — 
+     enable/disable device to wake up from D3_hot or D3_cold
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-target-state.html"><span class="phrase">pci_target_state</span></a></span><span class="refpurpose"> — 
+     find an appropriate low power state for a given PCI dev
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-prepare-to-sleep.html"><span class="phrase">pci_prepare_to_sleep</span></a></span><span class="refpurpose"> — 
+     prepare PCI device for system-wide transition into a sleep state
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-back-from-sleep.html"><span class="phrase">pci_back_from_sleep</span></a></span><span class="refpurpose"> — 
+     turn PCI device on during system-wide transition into working state
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-dev-run-wake.html"><span class="phrase">pci_dev_run_wake</span></a></span><span class="refpurpose"> — 
+     Check if device can generate run-time wake-up events.
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-enable-ido.html"><span class="phrase">pci_enable_ido</span></a></span><span class="refpurpose"> — 
+     enable ID-based ordering on a device
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-disable-ido.html"><span class="phrase">pci_disable_ido</span></a></span><span class="refpurpose"> — 
+     disable ID-based ordering on a device
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-enable-obff.html"><span class="phrase">pci_enable_obff</span></a></span><span class="refpurpose"> — 
+     enable optimized buffer flush/fill
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-disable-obff.html"><span class="phrase">pci_disable_obff</span></a></span><span class="refpurpose"> — 
+     disable optimized buffer flush/fill
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-ltr-supported.html"><span class="phrase">pci_ltr_supported</span></a></span><span class="refpurpose"> — 
+     check whether a device supports LTR
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-enable-ltr.html"><span class="phrase">pci_enable_ltr</span></a></span><span class="refpurpose"> — 
+     enable latency tolerance reporting
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-disable-ltr.html"><span class="phrase">pci_disable_ltr</span></a></span><span class="refpurpose"> — 
+     disable latency tolerance reporting
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-set-ltr.html"><span class="phrase">pci_set_ltr</span></a></span><span class="refpurpose"> — 
+     set LTR latency values
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-release-region.html"><span class="phrase">pci_release_region</span></a></span><span class="refpurpose"> — 
+     Release a PCI bar
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-request-region.html"><span class="phrase">pci_request_region</span></a></span><span class="refpurpose"> — 
+     Reserve PCI I/O and memory resource
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-request-region-exclusive.html"><span class="phrase">pci_request_region_exclusive</span></a></span><span class="refpurpose"> — 
+     Reserved PCI I/O and memory resource
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-release-selected-regions.html"><span class="phrase">pci_release_selected_regions</span></a></span><span class="refpurpose"> — 
+     Release selected PCI I/O and memory resources
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-request-selected-regions.html"><span class="phrase">pci_request_selected_regions</span></a></span><span class="refpurpose"> — 
+     Reserve selected PCI I/O and memory resources
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-release-regions.html"><span class="phrase">pci_release_regions</span></a></span><span class="refpurpose"> — 
+     Release reserved PCI I/O and memory resources
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-request-regions.html"><span class="phrase">pci_request_regions</span></a></span><span class="refpurpose"> — 
+     Reserved PCI I/O and memory resources
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-request-regions-exclusive.html"><span class="phrase">pci_request_regions_exclusive</span></a></span><span class="refpurpose"> — 
+     Reserved PCI I/O and memory resources
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-set-master.html"><span class="phrase">pci_set_master</span></a></span><span class="refpurpose"> — 
+     enables bus-mastering for device dev
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-clear-master.html"><span class="phrase">pci_clear_master</span></a></span><span class="refpurpose"> — 
+     disables bus-mastering for device dev
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-set-cacheline-size.html"><span class="phrase">pci_set_cacheline_size</span></a></span><span class="refpurpose"> — 
+     ensure the CACHE_LINE_SIZE register is programmed
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-set-mwi.html"><span class="phrase">pci_set_mwi</span></a></span><span class="refpurpose"> — 
+     enables memory-write-invalidate PCI transaction
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-try-set-mwi.html"><span class="phrase">pci_try_set_mwi</span></a></span><span class="refpurpose"> — 
+     enables memory-write-invalidate PCI transaction
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-clear-mwi.html"><span class="phrase">pci_clear_mwi</span></a></span><span class="refpurpose"> — 
+     disables Memory-Write-Invalidate for device dev
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-intx.html"><span class="phrase">pci_intx</span></a></span><span class="refpurpose"> — 
+     enables/disables PCI INTx for device dev
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-msi-off.html"><span class="phrase">pci_msi_off</span></a></span><span class="refpurpose"> — 
+     disables any msi or msix capabilities
+ </span></dt><dt><span class="refentrytitle"><a href="API---pci-reset-function.html"><span class="phrase">__pci_reset_function</span></a></span><span class="refpurpose"> — 
+     reset a PCI device function
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-reset-function.html"><span class="phrase">pci_reset_function</span></a></span><span class="refpurpose"> — 
+     quiesce and reset a PCI device function
+ </span></dt><dt><span class="refentrytitle"><a href="API-pcix-get-max-mmrbc.html"><span class="phrase">pcix_get_max_mmrbc</span></a></span><span class="refpurpose"> — 
+     get PCI-X maximum designed memory read byte count
+ </span></dt><dt><span class="refentrytitle"><a href="API-pcix-get-mmrbc.html"><span class="phrase">pcix_get_mmrbc</span></a></span><span class="refpurpose"> — 
+     get PCI-X maximum memory read byte count
+ </span></dt><dt><span class="refentrytitle"><a href="API-pcix-set-mmrbc.html"><span class="phrase">pcix_set_mmrbc</span></a></span><span class="refpurpose"> — 
+     set PCI-X maximum memory read byte count
+ </span></dt><dt><span class="refentrytitle"><a href="API-pcie-get-readrq.html"><span class="phrase">pcie_get_readrq</span></a></span><span class="refpurpose"> — 
+     get PCI Express read request size
+ </span></dt><dt><span class="refentrytitle"><a href="API-pcie-set-readrq.html"><span class="phrase">pcie_set_readrq</span></a></span><span class="refpurpose"> — 
+     set PCI Express maximum memory read request
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-select-bars.html"><span class="phrase">pci_select_bars</span></a></span><span class="refpurpose"> — 
+     Make BAR mask from the type of resource
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-add-dynid.html"><span class="phrase">pci_add_dynid</span></a></span><span class="refpurpose"> — 
+  add a new PCI device ID to this driver and re-probe devices
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-match-id.html"><span class="phrase">pci_match_id</span></a></span><span class="refpurpose"> — 
+     See if a pci device matches a given pci_id table
+ </span></dt><dt><span class="refentrytitle"><a href="API---pci-register-driver.html"><span class="phrase">__pci_register_driver</span></a></span><span class="refpurpose"> — 
+     register a new pci driver
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-unregister-driver.html"><span class="phrase">pci_unregister_driver</span></a></span><span class="refpurpose"> — 
+     unregister a pci driver
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-dev-driver.html"><span class="phrase">pci_dev_driver</span></a></span><span class="refpurpose"> — 
+     get the pci_driver of a device
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-dev-get.html"><span class="phrase">pci_dev_get</span></a></span><span class="refpurpose"> — 
+     increments the reference count of the pci device structure
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-dev-put.html"><span class="phrase">pci_dev_put</span></a></span><span class="refpurpose"> — 
+     release a use of the pci device structure
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-remove-bus-device.html"><span class="phrase">pci_remove_bus_device</span></a></span><span class="refpurpose"> — 
+  remove a PCI device and any children
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-remove-behind-bridge.html"><span class="phrase">pci_remove_behind_bridge</span></a></span><span class="refpurpose"> — 
+     remove all devices behind a PCI bridge
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-stop-bus-device.html"><span class="phrase">pci_stop_bus_device</span></a></span><span class="refpurpose"> — 
+     stop a PCI device and any children
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-find-bus.html"><span class="phrase">pci_find_bus</span></a></span><span class="refpurpose"> — 
+  locate PCI bus from a given domain and bus number
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-find-next-bus.html"><span class="phrase">pci_find_next_bus</span></a></span><span class="refpurpose"> — 
+     begin or continue searching for a PCI bus
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-get-slot.html"><span class="phrase">pci_get_slot</span></a></span><span class="refpurpose"> — 
+     locate PCI device for a given PCI slot
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-get-domain-bus-and-slot.html"><span class="phrase">pci_get_domain_bus_and_slot</span></a></span><span class="refpurpose"> — 
+     locate PCI device for a given PCI domain (segment), bus, and slot
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-get-subsys.html"><span class="phrase">pci_get_subsys</span></a></span><span class="refpurpose"> — 
+     begin or continue searching for a PCI device by vendor/subvendor/device/subdevice id
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-get-device.html"><span class="phrase">pci_get_device</span></a></span><span class="refpurpose"> — 
+     begin or continue searching for a PCI device by vendor/device id
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-get-class.html"><span class="phrase">pci_get_class</span></a></span><span class="refpurpose"> — 
+     begin or continue searching for a PCI device by class
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-dev-present.html"><span class="phrase">pci_dev_present</span></a></span><span class="refpurpose"> — 
+     Returns 1 if device matching the device list is present, 0 if not.
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-enable-msi-block.html"><span class="phrase">pci_enable_msi_block</span></a></span><span class="refpurpose"> — 
+  configure device's MSI capability structure
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-enable-msix.html"><span class="phrase">pci_enable_msix</span></a></span><span class="refpurpose"> — 
+     configure device's MSI-X capability structure
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-msi-enabled.html"><span class="phrase">pci_msi_enabled</span></a></span><span class="refpurpose"> — 
+     is MSI enabled?
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-bus-alloc-resource.html"><span class="phrase">pci_bus_alloc_resource</span></a></span><span class="refpurpose"> — 
+  allocate a resource from a parent bus
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-bus-add-device.html"><span class="phrase">pci_bus_add_device</span></a></span><span class="refpurpose"> — 
+     add a single device
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-bus-add-devices.html"><span class="phrase">pci_bus_add_devices</span></a></span><span class="refpurpose"> — 
+     insert newly discovered PCI devices
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-bus-set-ops.html"><span class="phrase">pci_bus_set_ops</span></a></span><span class="refpurpose"> — 
+  Set raw operations of pci bus
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-read-vpd.html"><span class="phrase">pci_read_vpd</span></a></span><span class="refpurpose"> — 
+     Read one entry from Vital Product Data
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-write-vpd.html"><span class="phrase">pci_write_vpd</span></a></span><span class="refpurpose"> — 
+     Write entry to Vital Product Data
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-vpd-truncate.html"><span class="phrase">pci_vpd_truncate</span></a></span><span class="refpurpose"> — 
+     Set available Vital Product Data size
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-block-user-cfg-access.html"><span class="phrase">pci_block_user_cfg_access</span></a></span><span class="refpurpose"> — 
+     Block userspace PCI config reads/writes
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-unblock-user-cfg-access.html"><span class="phrase">pci_unblock_user_cfg_access</span></a></span><span class="refpurpose"> — 
+     Unblock userspace PCI config reads/writes
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-lost-interrupt.html"><span class="phrase">pci_lost_interrupt</span></a></span><span class="refpurpose"> — 
+  reports a lost PCI interrupt
+ </span></dt><dt><span class="refentrytitle"><a href="API---ht-create-irq.html"><span class="phrase">__ht_create_irq</span></a></span><span class="refpurpose"> — 
+  create an irq and attach it to a device.
+ </span></dt><dt><span class="refentrytitle"><a href="API-ht-create-irq.html"><span class="phrase">ht_create_irq</span></a></span><span class="refpurpose"> — 
+     create an irq and attach it to a device.
+ </span></dt><dt><span class="refentrytitle"><a href="API-ht-destroy-irq.html"><span class="phrase">ht_destroy_irq</span></a></span><span class="refpurpose"> — 
+     destroy an irq created with ht_create_irq
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-scan-slot.html"><span class="phrase">pci_scan_slot</span></a></span><span class="refpurpose"> — 
+  scan a PCI slot on a bus for devices.
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-rescan-bus.html"><span class="phrase">pci_rescan_bus</span></a></span><span class="refpurpose"> — 
+     scan a PCI bus for devices.
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-create-slot.html"><span class="phrase">pci_create_slot</span></a></span><span class="refpurpose"> — 
+  create or increment refcount for physical PCI slot
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-renumber-slot.html"><span class="phrase">pci_renumber_slot</span></a></span><span class="refpurpose"> — 
+     update <code class="constant">struct</code> pci_slot -&gt; number
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-destroy-slot.html"><span class="phrase">pci_destroy_slot</span></a></span><span class="refpurpose"> — 
+     decrement refcount for physical PCI slot
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-hp-create-module-link.html"><span class="phrase">pci_hp_create_module_link</span></a></span><span class="refpurpose"> — 
+     create symbolic link to the hotplug driver module.
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-hp-remove-module-link.html"><span class="phrase">pci_hp_remove_module_link</span></a></span><span class="refpurpose"> — 
+     remove symbolic link to the hotplug driver module.
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-enable-rom.html"><span class="phrase">pci_enable_rom</span></a></span><span class="refpurpose"> — 
+  enable ROM decoding for a PCI device
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-disable-rom.html"><span class="phrase">pci_disable_rom</span></a></span><span class="refpurpose"> — 
+     disable ROM decoding for a PCI device
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-map-rom.html"><span class="phrase">pci_map_rom</span></a></span><span class="refpurpose"> — 
+     map a PCI ROM to kernel space
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-unmap-rom.html"><span class="phrase">pci_unmap_rom</span></a></span><span class="refpurpose"> — 
+     unmap the ROM from kernel space
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-enable-sriov.html"><span class="phrase">pci_enable_sriov</span></a></span><span class="refpurpose"> — 
+  enable the SR-IOV capability
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-disable-sriov.html"><span class="phrase">pci_disable_sriov</span></a></span><span class="refpurpose"> — 
+     disable the SR-IOV capability
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-sriov-migration.html"><span class="phrase">pci_sriov_migration</span></a></span><span class="refpurpose"> — 
+     notify SR-IOV core of Virtual Function Migration
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-num-vf.html"><span class="phrase">pci_num_vf</span></a></span><span class="refpurpose"> — 
+     return number of VFs associated with a PF device_release_driver
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-read-legacy-io.html"><span class="phrase">pci_read_legacy_io</span></a></span><span class="refpurpose"> — 
+  read byte(s) from legacy I/O port space
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-write-legacy-io.html"><span class="phrase">pci_write_legacy_io</span></a></span><span class="refpurpose"> — 
+     write byte(s) to legacy I/O port space
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-mmap-legacy-mem.html"><span class="phrase">pci_mmap_legacy_mem</span></a></span><span class="refpurpose"> — 
+     map legacy PCI memory into user memory space
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-mmap-legacy-io.html"><span class="phrase">pci_mmap_legacy_io</span></a></span><span class="refpurpose"> — 
+     map legacy PCI IO into user memory space
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-adjust-legacy-attr.html"><span class="phrase">pci_adjust_legacy_attr</span></a></span><span class="refpurpose"> — 
+     adjustment of legacy file attributes
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-create-legacy-files.html"><span class="phrase">pci_create_legacy_files</span></a></span><span class="refpurpose"> — 
+     create legacy I/O port and memory files
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-mmap-resource.html"><span class="phrase">pci_mmap_resource</span></a></span><span class="refpurpose"> — 
+     map a PCI resource into user memory space
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-remove-resource-files.html"><span class="phrase">pci_remove_resource_files</span></a></span><span class="refpurpose"> — 
+     cleanup resource files
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-create-resource-files.html"><span class="phrase">pci_create_resource_files</span></a></span><span class="refpurpose"> — 
+     create resource files in sysfs for <em class="parameter"><code>dev</code></em>
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-write-rom.html"><span class="phrase">pci_write_rom</span></a></span><span class="refpurpose"> — 
+     used to enable access to the PCI ROM display
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-read-rom.html"><span class="phrase">pci_read_rom</span></a></span><span class="refpurpose"> — 
+     read a PCI ROM
+ </span></dt><dt><span class="refentrytitle"><a href="API-pci-remove-sysfs-dev-files.html"><span class="phrase">pci_remove_sysfs_dev_files</span></a></span><span class="refpurpose"> — 
+     cleanup PCI specific sysfs files
+ </span></dt></dl></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="API-mtrr-del.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="hardware.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="API-pci-bus-max-busnr.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"><span class="phrase">mtrr_del</span> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> <span class="phrase">pci_bus_max_busnr</span></td></tr></table></div></body></html>

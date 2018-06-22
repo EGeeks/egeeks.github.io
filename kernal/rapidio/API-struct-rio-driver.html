@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>struct rio_driver</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="RapidIO Subsystem Guide" /><link rel="up" href="internals.html#Structures" title="Structures" /><link rel="prev" href="API-struct-rio-ops.html" title="struct rio_ops" /><link rel="next" href="API-struct-rio-device-id.html" title="struct rio_device_id" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"><span class="phrase">struct rio_driver</span></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="API-struct-rio-ops.html">Prev</a> </td><th width="60%" align="center">Structures</th><td width="20%" align="right"> <a accesskey="n" href="API-struct-rio-device-id.html">Next</a></td></tr></table><hr /></div><div class="refentry"><a id="API-struct-rio-driver"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>struct rio_driver — 
+     RIO driver info
+ </p></div><div class="refsynopsisdiv"><h2>Synopsis</h2><pre class="programlisting">
+struct rio_driver {
+  struct list_head node;
+  char * name;
+  const struct rio_device_id * id_table;
+  int (* probe) (struct rio_dev * dev, const struct rio_device_id * id);
+  void (* remove) (struct rio_dev * dev);
+  int (* suspend) (struct rio_dev * dev, u32 state);
+  int (* resume) (struct rio_dev * dev);
+  int (* enable_wake) (struct rio_dev * dev, u32 state, int enable);
+  struct device_driver driver;
+};  </pre></div><div class="refsect1"><a id="idp47443484"></a><h2>Members</h2><div class="variablelist"><dl class="variablelist"><dt><span class="term">node</span></dt><dd><p>
+   Node in list of drivers
+      </p></dd><dt><span class="term">name</span></dt><dd><p>
+   RIO driver name
+      </p></dd><dt><span class="term">id_table</span></dt><dd><p>
+   RIO device ids to be associated with this driver
+      </p></dd><dt><span class="term">probe</span></dt><dd><p>
+   RIO device inserted
+      </p></dd><dt><span class="term">remove</span></dt><dd><p>
+   RIO device removed
+      </p></dd><dt><span class="term">suspend</span></dt><dd><p>
+   RIO device suspended
+      </p></dd><dt><span class="term">resume</span></dt><dd><p>
+   RIO device awakened
+      </p></dd><dt><span class="term">enable_wake</span></dt><dd><p>
+   RIO device enable wake event
+      </p></dd><dt><span class="term">driver</span></dt><dd><p>
+   LDM driver struct
+      </p></dd></dl></div></div><div class="refsect1"><a id="idp47450172"></a><h2>Description</h2><p>
+   Provides info on a RIO device driver for insertion/removal and
+   power management purposes.
+</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="API-struct-rio-ops.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="internals.html#Structures">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="API-struct-rio-device-id.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"><span class="phrase">struct rio_ops</span> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> <span class="phrase">struct rio_device_id</span></td></tr></table></div></body></html>

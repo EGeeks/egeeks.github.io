@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>struct ff_envelope</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="Linux Device Drivers" /><link rel="up" href="input_subsystem.html#idp30946476" title="Input core" /><link rel="prev" href="API-struct-ff-trigger.html" title="struct ff_trigger" /><link rel="next" href="API-struct-ff-constant-effect.html" title="struct ff_constant_effect" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"><span class="phrase">struct ff_envelope</span></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="API-struct-ff-trigger.html">Prev</a> </td><th width="60%" align="center">Input core</th><td width="20%" align="right"> <a accesskey="n" href="API-struct-ff-constant-effect.html">Next</a></td></tr></table><hr /></div><div class="refentry"><a id="API-struct-ff-envelope"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>struct ff_envelope — 
+     generic force-feedback effect envelope
+ </p></div><div class="refsynopsisdiv"><h2>Synopsis</h2><pre class="programlisting">
+struct ff_envelope {
+  __u16 attack_length;
+  __u16 attack_level;
+  __u16 fade_length;
+  __u16 fade_level;
+};  </pre></div><div class="refsect1"><a id="idp30983804"></a><h2>Members</h2><div class="variablelist"><dl class="variablelist"><dt><span class="term">attack_length</span></dt><dd><p>
+   duration of the attack (ms)
+      </p></dd><dt><span class="term">attack_level</span></dt><dd><p>
+   level at the beginning of the attack
+      </p></dd><dt><span class="term">fade_length</span></dt><dd><p>
+   duration of fade (ms)
+      </p></dd><dt><span class="term">fade_level</span></dt><dd><p>
+   level at the end of fade
+      </p></dd></dl></div></div><div class="refsect1"><a id="idp30987220"></a><h2>Description</h2><p>
+   The <em class="parameter"><code>attack_level</code></em> and <em class="parameter"><code>fade_level</code></em> are absolute values; when applying
+   envelope force-feedback core will convert to positive/negative
+   value based on polarity of the default level of the effect.
+   Valid range for the attack and fade levels is 0x0000 - 0x7fff
+</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="API-struct-ff-trigger.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="input_subsystem.html#idp30946476">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="API-struct-ff-constant-effect.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"><span class="phrase">struct ff_trigger</span> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> <span class="phrase">struct ff_constant_effect</span></td></tr></table></div></body></html>

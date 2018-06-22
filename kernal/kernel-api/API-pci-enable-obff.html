@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>pci_enable_obff</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="The Linux Kernel API" /><link rel="up" href="ch09s05.html" title="PCI Support Library" /><link rel="prev" href="API-pci-disable-ido.html" title="pci_disable_ido" /><link rel="next" href="API-pci-disable-obff.html" title="pci_disable_obff" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"><span class="phrase">pci_enable_obff</span></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="API-pci-disable-ido.html">Prev</a> </td><th width="60%" align="center">PCI Support Library</th><td width="20%" align="right"> <a accesskey="n" href="API-pci-disable-obff.html">Next</a></td></tr></table><hr /></div><div class="refentry"><a id="API-pci-enable-obff"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>pci_enable_obff — 
+     enable optimized buffer flush/fill
+ </p></div><div class="refsynopsisdiv"><h2>Synopsis</h2><div class="funcsynopsis"><table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;"><tr><td><code class="funcdef">int <strong class="fsfunc">pci_enable_obff </strong>(</code></td><td>struct pci_dev * <var class="pdparam">dev</var>, </td></tr><tr><td> </td><td>enum pci_obff_signal_type <var class="pdparam">type</var><code>)</code>;</td></tr></table><div class="funcprototype-spacer"> </div></div></div><div class="refsect1"><a id="idp42311932"></a><h2>Arguments</h2><div class="variablelist"><dl class="variablelist"><dt><span class="term"><em class="parameter"><code>dev</code></em></span></dt><dd><p>
+     PCI device
+    </p></dd><dt><span class="term"><em class="parameter"><code>type</code></em></span></dt><dd><p>
+     type of signaling to use
+    </p></dd></dl></div></div><div class="refsect1"><a id="idp42314548"></a><h2>Description</h2><p>
+   Try to enable <em class="parameter"><code>type</code></em> OBFF signaling on <em class="parameter"><code>dev</code></em>.  It will try using WAKE#
+   signaling if possible, falling back to message signaling only if
+   WAKE# isn't supported.  <em class="parameter"><code>type</code></em> should indicate whether the PCIe link
+   be brought out of L0s or L1 to send the message.  It should be either
+   <code class="constant">PCI_EXP_OBFF_SIGNAL_ALWAYS</code> or <code class="constant">PCI_OBFF_SIGNAL_L0</code>.
+   </p><p>
+
+   If your device can benefit from receiving all messages, even at the
+   power cost of bringing the link back up from a low power state, use
+   <code class="constant">PCI_EXP_OBFF_SIGNAL_ALWAYS</code>.  Otherwise, use <code class="constant">PCI_OBFF_SIGNAL_L0</code> (the
+   preferred type).
+</p></div><div class="refsect1"><a id="idp42317700"></a><h2>RETURNS</h2><p>
+   Zero on success, appropriate error number on failure.
+</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="API-pci-disable-ido.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch09s05.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="API-pci-disable-obff.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"><span class="phrase">pci_disable_ido</span> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> <span class="phrase">pci_disable_obff</span></td></tr></table></div></body></html>

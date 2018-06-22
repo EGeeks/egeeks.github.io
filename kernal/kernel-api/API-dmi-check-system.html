@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>dmi_check_system</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="The Linux Kernel API" /><link rel="up" href="firmware.html#idp43254828" title="DMI Interfaces" /><link rel="prev" href="firmware.html" title="Chapter 10. Firmware Interfaces" /><link rel="next" href="API-dmi-first-match.html" title="dmi_first_match" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"><span class="phrase">dmi_check_system</span></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="firmware.html">Prev</a> </td><th width="60%" align="center">DMI Interfaces</th><td width="20%" align="right"> <a accesskey="n" href="API-dmi-first-match.html">Next</a></td></tr></table><hr /></div><div class="refentry"><a id="API-dmi-check-system"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>dmi_check_system — 
+  check system DMI data
+ </p></div><div class="refsynopsisdiv"><h2>Synopsis</h2><div class="funcsynopsis"><table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;"><tr><td><code class="funcdef">int <strong class="fsfunc">dmi_check_system </strong>(</code></td><td>const struct dmi_system_id * <var class="pdparam">list</var><code>)</code>;</td></tr></table><div class="funcprototype-spacer"> </div></div></div><div class="refsect1"><a id="idp43259892"></a><h2>Arguments</h2><div class="variablelist"><dl class="variablelist"><dt><span class="term"><em class="parameter"><code>list</code></em></span></dt><dd><p>
+     array of dmi_system_id structures to match against
+     All non-null elements of the list must match
+     their slot's (field index's) data (i.e., each
+     list string must be a substring of the specified
+     DMI slot's string data) to be considered a
+     successful match.
+    </p></dd></dl></div></div><div class="refsect1"><a id="idp43261764"></a><h2>Description</h2><p>
+   Walk the blacklist table running matching functions until someone
+   returns non zero or we hit the end. Callback function is called for
+   each successful match. Returns the number of matches.
+</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="firmware.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="firmware.html#idp43254828">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="API-dmi-first-match.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 10. Firmware Interfaces </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> <span class="phrase">dmi_first_match</span></td></tr></table></div></body></html>

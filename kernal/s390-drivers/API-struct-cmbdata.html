@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>struct cmbdata</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="Writing s390 channel device drivers" /><link rel="up" href="cmf.html" title="The channel-measurement facility" /><link rel="prev" href="cmf.html" title="The channel-measurement facility" /><link rel="next" href="API-enable-cmf.html" title="enable_cmf" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"><span class="phrase">struct cmbdata</span></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="cmf.html">Prev</a> </td><th width="60%" align="center">The channel-measurement facility</th><td width="20%" align="right"> <a accesskey="n" href="API-enable-cmf.html">Next</a></td></tr></table><hr /></div><div class="refentry"><a id="API-struct-cmbdata"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>struct cmbdata — 
+  channel measurement block data for user space
+ </p></div><div class="refsynopsisdiv"><h2>Synopsis</h2><pre class="programlisting">
+struct cmbdata {
+  __u64 size;
+  __u64 elapsed_time;
+  __u64 ssch_rsch_count;
+  __u64 sample_count;
+  __u64 device_connect_time;
+  __u64 function_pending_time;
+  __u64 device_disconnect_time;
+  __u64 control_unit_queuing_time;
+  __u64 device_active_only_time;
+  __u64 device_busy_time;
+  __u64 initial_command_response_time;
+};  </pre></div><div class="refsect1"><a id="idp24723452"></a><h2>Members</h2><div class="variablelist"><dl class="variablelist"><dt><span class="term">size</span></dt><dd><p>
+size of the stored data
+      </p></dd><dt><span class="term">elapsed_time</span></dt><dd><p>
+time since last sampling
+      </p></dd><dt><span class="term">ssch_rsch_count</span></dt><dd><p>
+number of ssch and rsch
+      </p></dd><dt><span class="term">sample_count</span></dt><dd><p>
+number of samples
+      </p></dd><dt><span class="term">device_connect_time</span></dt><dd><p>
+time of device connect
+      </p></dd><dt><span class="term">function_pending_time</span></dt><dd><p>
+time of function pending
+      </p></dd><dt><span class="term">device_disconnect_time</span></dt><dd><p>
+time of device disconnect
+      </p></dd><dt><span class="term">control_unit_queuing_time</span></dt><dd><p>
+time of control unit queuing
+      </p></dd><dt><span class="term">device_active_only_time</span></dt><dd><p>
+time of device active only
+      </p></dd><dt><span class="term">device_busy_time</span></dt><dd><p>
+time of device busy (ext. format)
+      </p></dd><dt><span class="term">initial_command_response_time</span></dt><dd><p>
+initial command response time (ext. format)
+      </p></dd></dl></div></div><div class="refsect1"><a id="idp24731500"></a><h2>Description</h2><p>
+   All values are stored as 64 bit for simplicity, especially
+   in 32 bit emulation mode. All time values are normalized to
+   nanoseconds.
+   Currently, two formats are known, which differ by the size of
+   this structure, i.e. the last two members are only set when
+   the extended channel measurement facility (first shipped in
+   z990 machines) is activated.
+   Potentially, more fields could be added, which would result in a
+   new ioctl number.
+</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="cmf.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="cmf.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="API-enable-cmf.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">The channel-measurement facility </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> <span class="phrase">enable_cmf</span></td></tr></table></div></body></html>

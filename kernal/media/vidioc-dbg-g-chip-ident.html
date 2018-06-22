@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>ioctl VIDIOC_DBG_G_CHIP_IDENT</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="LINUX MEDIA INFRASTRUCTURE API" /><link rel="up" href="user-func.html" title="Appendix A. Function Reference" /><link rel="prev" href="vidioc-cropcap.html" title="ioctl VIDIOC_CROPCAP" /><link rel="next" href="vidioc-dbg-g-register.html" title="ioctl VIDIOC_DBG_G_REGISTER, VIDIOC_DBG_S_REGISTER" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">ioctl VIDIOC_DBG_G_CHIP_IDENT</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="vidioc-cropcap.html">Prev</a> </td><th width="60%" align="center">Appendix A. Function Reference</th><td width="20%" align="right"> <a accesskey="n" href="vidioc-dbg-g-register.html">Next</a></td></tr></table><hr /></div><div class="refentry"><a id="vidioc-dbg-g-chip-ident"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>VIDIOC_DBG_G_CHIP_IDENT — Identify the chips on a TV card</p></div><div class="refsynopsisdiv"><h2>Synopsis</h2><div class="funcsynopsis"><table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;"><tr><td><code class="funcdef">int <strong class="fsfunc">ioctl</strong>(</code></td><td>int <var class="pdparam">fd</var>, </td></tr><tr><td> </td><td>int <var class="pdparam">request</var>, </td></tr><tr><td> </td><td>struct v4l2_dbg_chip_ident
+*<var class="pdparam">argp</var><code>)</code>;</td></tr></table><div class="funcprototype-spacer"> </div></div></div><div class="refsect1"><a id="idp52902268"></a><h2>Arguments</h2><div class="variablelist"><dl class="variablelist"><dt><span class="term"><em class="parameter"><code>fd</code></em></span></dt><dd><p>File descriptor returned by <a class="link" href="func-open.html" title="V4L2 open()"><code class="function">open()</code></a>.</p></dd><dt><span class="term"><em class="parameter"><code>request</code></em></span></dt><dd><p>VIDIOC_DBG_G_CHIP_IDENT</p></dd><dt><span class="term"><em class="parameter"><code>argp</code></em></span></dt><dd><p></p></dd></dl></div></div><div class="refsect1"><a id="idp52986380"></a><h2>Description</h2><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Experimental</h3><p>This is an <a class="link" href="hist-v4l2.html#experimental" title="Experimental API Elements">experimental</a> interface and may change in
+the future.</p></div><p>For driver debugging purposes this ioctl allows test
+applications to query the driver about the chips present on the TV
+card. Regular applications must not use it. When you found a chip
+specific bug, please contact the linux-media mailing list (<a class="ulink" href="http://www.linuxtv.org/lists.php" target="_top">http://www.linuxtv.org/lists.php</a>)
+so it can be fixed.</p><p>To query the driver applications must initialize the
+<em class="structfield"><code>match.type</code></em> and
+<em class="structfield"><code>match.addr</code></em> or <em class="structfield"><code>match.name</code></em>
+fields of a struct <a class="link" href="vidioc-dbg-g-chip-ident.html#v4l2-dbg-chip-ident" title="Table A.4. struct v4l2_dbg_chip_ident">v4l2_dbg_chip_ident</a>
+and call <code class="constant">VIDIOC_DBG_G_CHIP_IDENT</code> with a pointer to
+this structure. On success the driver stores information about the
+selected chip in the <em class="structfield"><code>ident</code></em> and
+<em class="structfield"><code>revision</code></em> fields. On failure the structure
+remains unchanged.</p><p>When <em class="structfield"><code>match.type</code></em> is
+<code class="constant">V4L2_CHIP_MATCH_HOST</code>,
+<em class="structfield"><code>match.addr</code></em> selects the nth non-I<sup>2</sup>C chip
+on the TV card. You can enumerate all chips by starting at zero and
+incrementing <em class="structfield"><code>match.addr</code></em> by one until
+<code class="constant">VIDIOC_DBG_G_CHIP_IDENT</code> fails with an <span class="errorcode">EINVAL</span> error code.
+The number zero always selects the host chip, e. g. the chip connected
+to the PCI or USB bus.</p><p>When <em class="structfield"><code>match.type</code></em> is
+<code class="constant">V4L2_CHIP_MATCH_I2C_DRIVER</code>,
+<em class="structfield"><code>match.name</code></em> contains the I2C driver name.
+For instance
+<code class="constant">"saa7127"</code> will match any chip
+supported by the saa7127 driver, regardless of its I<sup>2</sup>C bus address.
+When multiple chips supported by the same driver are present, the
+ioctl will return <code class="constant">V4L2_IDENT_AMBIGUOUS</code> in the
+<em class="structfield"><code>ident</code></em> field.</p><p>When <em class="structfield"><code>match.type</code></em> is
+<code class="constant">V4L2_CHIP_MATCH_I2C_ADDR</code>,
+<em class="structfield"><code>match.addr</code></em> selects a chip by its 7 bit
+I<sup>2</sup>C bus address.</p><p>When <em class="structfield"><code>match.type</code></em> is
+<code class="constant">V4L2_CHIP_MATCH_AC97</code>,
+<em class="structfield"><code>match.addr</code></em> selects the nth AC97 chip
+on the TV card. You can enumerate all chips by starting at zero and
+incrementing <em class="structfield"><code>match.addr</code></em> by one until
+<code class="constant">VIDIOC_DBG_G_CHIP_IDENT</code> fails with an <span class="errorcode">EINVAL</span> error code.</p><p>On success, the <em class="structfield"><code>ident</code></em> field will
+contain a chip ID from the Linux
+<code class="filename">media/v4l2-chip-ident.h</code> header file, and the
+<em class="structfield"><code>revision</code></em> field will contain a driver
+specific value, or zero if no particular revision is associated with
+this chip.</p><p>When the driver could not identify the selected chip,
+<em class="structfield"><code>ident</code></em> will contain
+<code class="constant">V4L2_IDENT_UNKNOWN</code>. When no chip matched
+the ioctl will succeed but the
+<em class="structfield"><code>ident</code></em> field will contain
+<code class="constant">V4L2_IDENT_NONE</code>. If multiple chips matched,
+<em class="structfield"><code>ident</code></em> will contain
+<code class="constant">V4L2_IDENT_AMBIGUOUS</code>. In all these cases the
+<em class="structfield"><code>revision</code></em> field remains unchanged.</p><p>This ioctl is optional, not all drivers may support it. It
+was introduced in Linux 2.6.21, but the API was changed to the
+one described here in 2.6.29.</p><p>We recommended the <span class="application">v4l2-dbg</span>
+utility over calling this ioctl directly. It is available from the
+LinuxTV v4l-dvb repository; see <a class="ulink" href="http://linuxtv.org/repo/" target="_top">http://linuxtv.org/repo/</a> for
+access instructions.</p><div class="table"><a id="ident-v4l2-dbg-match"></a><p class="title"><strong>Table A.3. struct <span class="structname">v4l2_dbg_match</span></strong></p><div class="table-contents"><table summary="struct v4l2_dbg_match" width="100%" border="0"><colgroup><col class="c1" /><col class="c2" /><col class="c3" /><col class="c4" /></colgroup><tbody valign="top"><tr><td valign="top">__u32</td><td valign="top"><em class="structfield"><code>type</code></em></td><td valign="top">See <a class="xref" href="vidioc-dbg-g-chip-ident.html#ident-chip-match-types" title="Table A.5. Chip Match Types">Table A.5, “Chip Match Types”</a> for a list of
+possible types.</td><td class="auto-generated"> </td></tr><tr><td valign="top">union</td><td valign="top">(anonymous)</td><td class="auto-generated"> </td><td class="auto-generated"> </td></tr><tr><td valign="top"> </td><td valign="top">__u32</td><td valign="top"><em class="structfield"><code>addr</code></em></td><td valign="top">Match a chip by this number, interpreted according
+to the <em class="structfield"><code>type</code></em> field.</td></tr><tr><td valign="top"> </td><td valign="top">char</td><td valign="top"><em class="structfield"><code>name[32]</code></em></td><td valign="top">Match a chip by this name, interpreted according
+to the <em class="structfield"><code>type</code></em> field.</td></tr></tbody></table></div></div><br class="table-break" /><div class="table"><a id="v4l2-dbg-chip-ident"></a><p class="title"><strong>Table A.4. struct <span class="structname">v4l2_dbg_chip_ident</span></strong></p><div class="table-contents"><table summary="struct v4l2_dbg_chip_ident" width="100%" border="0"><colgroup><col class="c1" /><col class="c2" /><col class="c3" /></colgroup><tbody valign="top"><tr><td valign="top">struct v4l2_dbg_match</td><td valign="top"><em class="structfield"><code>match</code></em></td><td valign="top">How to match the chip, see <a class="xref" href="vidioc-dbg-g-chip-ident.html#ident-v4l2-dbg-match" title="Table A.3. struct v4l2_dbg_match">Table A.3, “struct <span class="structname">v4l2_dbg_match</span>”</a>.</td></tr><tr><td valign="top">__u32</td><td valign="top"><em class="structfield"><code>ident</code></em></td><td valign="top">A chip identifier as defined in the Linux
+<code class="filename">media/v4l2-chip-ident.h</code> header file, or one of
+the values from <a class="xref" href="vidioc-dbg-g-chip-ident.html#chip-ids" title="Table A.6. Chip Identifiers">Table A.6, “Chip Identifiers”</a>.</td></tr><tr><td valign="top">__u32</td><td valign="top"><em class="structfield"><code>revision</code></em></td><td valign="top">A chip revision, chip and driver specific.</td></tr></tbody></table></div></div><br class="table-break" /><div class="table"><a id="ident-chip-match-types"></a><p class="title"><strong>Table A.5. Chip Match Types</strong></p><div class="table-contents"><table summary="Chip Match Types" width="100%" border="0"><colgroup><col class="c1" /><col class="c2" /><col class="c3" /></colgroup><tbody valign="top"><tr><td valign="top"><code class="constant">V4L2_CHIP_MATCH_HOST</code></td><td valign="top">0</td><td valign="top">Match the nth chip on the card, zero for the
+	    host chip. Does not match I<sup>2</sup>C chips.</td></tr><tr><td valign="top"><code class="constant">V4L2_CHIP_MATCH_I2C_DRIVER</code></td><td valign="top">1</td><td valign="top">Match an I<sup>2</sup>C chip by its driver name.</td></tr><tr><td valign="top"><code class="constant">V4L2_CHIP_MATCH_I2C_ADDR</code></td><td valign="top">2</td><td valign="top">Match a chip by its 7 bit I<sup>2</sup>C bus address.</td></tr><tr><td valign="top"><code class="constant">V4L2_CHIP_MATCH_AC97</code></td><td valign="top">3</td><td valign="top">Match the nth anciliary AC97 chip.</td></tr></tbody></table></div></div><br class="table-break" /><div class="table"><a id="chip-ids"></a><p class="title"><strong>Table A.6. Chip Identifiers</strong></p><div class="table-contents"><table summary="Chip Identifiers" width="100%" border="0"><colgroup><col class="c1" /><col class="c2" /><col class="c3" /></colgroup><tbody valign="top"><tr><td valign="top"><code class="constant">V4L2_IDENT_NONE</code></td><td valign="top">0</td><td valign="top">No chip matched.</td></tr><tr><td valign="top"><code class="constant">V4L2_IDENT_AMBIGUOUS</code></td><td valign="top">1</td><td valign="top">Multiple chips matched.</td></tr><tr><td valign="top"><code class="constant">V4L2_IDENT_UNKNOWN</code></td><td valign="top">2</td><td valign="top">A chip is present at this address, but the driver
+could not identify it.</td></tr></tbody></table></div></div><br class="table-break" /></div><div class="refsect1"><a id="idp53032380"></a><h2>Return Value</h2><p>On success <span class="returnvalue">0</span> is returned, on error <span class="returnvalue">-1</span> and the <code class="varname">errno</code> variable is set appropriately:</p><div class="variablelist"><dl class="variablelist"><dt><span class="term"><span class="errorcode">EINVAL</span></span></dt><dd><p>The driver does not support this ioctl, or the
+<em class="structfield"><code>match_type</code></em> is invalid.</p></dd></dl></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="vidioc-cropcap.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="user-func.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="vidioc-dbg-g-register.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">ioctl VIDIOC_CROPCAP </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> ioctl VIDIOC_DBG_G_REGISTER, VIDIOC_DBG_S_REGISTER</td></tr></table></div></body></html>

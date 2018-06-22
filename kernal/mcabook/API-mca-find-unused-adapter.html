@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>mca_find_unused_adapter</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="MCA Driver Programming Interface" /><link rel="up" href="pubfunctions.html" title="Chapter 3. Public Functions Provided" /><link rel="prev" href="API-mca-find-adapter.html" title="mca_find_adapter" /><link rel="next" href="API-mca-read-stored-pos.html" title="mca_read_stored_pos" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"><span class="phrase">mca_find_unused_adapter</span></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="API-mca-find-adapter.html">Prev</a> </td><th width="60%" align="center">Chapter 3. Public Functions Provided</th><td width="20%" align="right"> <a accesskey="n" href="API-mca-read-stored-pos.html">Next</a></td></tr></table><hr /></div><div class="refentry"><a id="API-mca-find-unused-adapter"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>mca_find_unused_adapter — 
+     scan for unused adapters
+ </p></div><div class="refsynopsisdiv"><h2>Synopsis</h2><div class="funcsynopsis"><table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;"><tr><td><code class="funcdef">int <strong class="fsfunc">mca_find_unused_adapter </strong>(</code></td><td>int <var class="pdparam">id</var>, </td></tr><tr><td> </td><td>int <var class="pdparam">start</var><code>)</code>;</td></tr></table><div class="funcprototype-spacer"> </div></div></div><div class="refsect1"><a id="idp29138924"></a><h2>Arguments</h2><div class="variablelist"><dl class="variablelist"><dt><span class="term"><em class="parameter"><code>id</code></em></span></dt><dd><p>
+     MCA identification to search for
+    </p></dd><dt><span class="term"><em class="parameter"><code>start</code></em></span></dt><dd><p>
+     starting slot
+    </p></dd></dl></div></div><div class="refsect1"><a id="idp29146460"></a><h2>Description</h2><p>
+   Search the MCA configuration for adapters matching the 16bit
+   ID given. The first time it should be called with start as zero
+   and then further calls made passing the return value of the
+   previous call until <code class="constant">MCA_NOTFOUND</code> is returned.
+   </p><p>
+
+   Adapters that have been claimed by drivers and those that
+   are disabled are not reported. This function thus allows a driver
+   to scan for further cards when some may already be driven.
+</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="API-mca-find-adapter.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="pubfunctions.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="API-mca-read-stored-pos.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"><span class="phrase">mca_find_adapter</span> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> <span class="phrase">mca_read_stored_pos</span></td></tr></table></div></body></html>

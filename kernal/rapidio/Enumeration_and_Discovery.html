@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Enumeration and Discovery</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="RapidIO Subsystem Guide" /><link rel="up" href="internals.html" title="Chapter 4. Internals" /><link rel="prev" href="API-struct-rio-switch-ops.html" title="struct rio_switch_ops" /><link rel="next" href="API-rio-get-device-id.html" title="rio_get_device_id" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Enumeration and Discovery</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="API-struct-rio-switch-ops.html">Prev</a> </td><th width="60%" align="center">Chapter 4. Internals</th><td width="20%" align="right"> <a accesskey="n" href="API-rio-get-device-id.html">Next</a></td></tr></table><hr /></div><div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="Enumeration_and_Discovery"></a>Enumeration and Discovery</h2></div></div></div><div class="toc"><dl class="toc"><dt><span class="refentrytitle"><a href="API-rio-get-device-id.html"><span class="phrase">rio_get_device_id</span></a></span><span class="refpurpose"> — 
+  Get the base/extended device id for a device
+ </span></dt><dt><span class="refentrytitle"><a href="API-rio-set-device-id.html"><span class="phrase">rio_set_device_id</span></a></span><span class="refpurpose"> — 
+     Set the base/extended device id for a device
+ </span></dt><dt><span class="refentrytitle"><a href="API-rio-local-set-device-id.html"><span class="phrase">rio_local_set_device_id</span></a></span><span class="refpurpose"> — 
+     Set the base/extended device id for a port
+ </span></dt><dt><span class="refentrytitle"><a href="API-rio-clear-locks.html"><span class="phrase">rio_clear_locks</span></a></span><span class="refpurpose"> — 
+     Release all host locks and signal enumeration complete
+ </span></dt><dt><span class="refentrytitle"><a href="API-rio-enum-host.html"><span class="phrase">rio_enum_host</span></a></span><span class="refpurpose"> — 
+     Set host lock and initialize host destination ID
+ </span></dt><dt><span class="refentrytitle"><a href="API-rio-device-has-destid.html"><span class="phrase">rio_device_has_destid</span></a></span><span class="refpurpose"> — 
+     Test if a device contains a destination ID register
+ </span></dt><dt><span class="refentrytitle"><a href="API-rio-release-dev.html"><span class="phrase">rio_release_dev</span></a></span><span class="refpurpose"> — 
+     Frees a RIO device struct
+ </span></dt><dt><span class="refentrytitle"><a href="API-rio-is-switch.html"><span class="phrase">rio_is_switch</span></a></span><span class="refpurpose"> — 
+     Tests if a RIO device has switch capabilities
+ </span></dt><dt><span class="refentrytitle"><a href="API-rio-switch-init.html"><span class="phrase">rio_switch_init</span></a></span><span class="refpurpose"> — 
+     Sets switch operations for a particular vendor switch
+ </span></dt><dt><span class="refentrytitle"><a href="API-rio-add-device.html"><span class="phrase">rio_add_device</span></a></span><span class="refpurpose"> — 
+     Adds a RIO device to the device model
+ </span></dt><dt><span class="refentrytitle"><a href="API-rio-enable-rx-tx-port.html"><span class="phrase">rio_enable_rx_tx_port</span></a></span><span class="refpurpose"> — 
+     enable input receiver and output transmitter of given port
+ </span></dt><dt><span class="refentrytitle"><a href="API-rio-setup-device.html"><span class="phrase">rio_setup_device</span></a></span><span class="refpurpose"> — 
+     Allocates and sets up a RIO device
+ </span></dt><dt><span class="refentrytitle"><a href="API-rio-sport-is-active.html"><span class="phrase">rio_sport_is_active</span></a></span><span class="refpurpose"> — 
+     Tests if a switch port has an active connection.
+ </span></dt><dt><span class="refentrytitle"><a href="API-rio-lock-device.html"><span class="phrase">rio_lock_device</span></a></span><span class="refpurpose"> — 
+     Acquires host device lock for specified device
+ </span></dt><dt><span class="refentrytitle"><a href="API-rio-unlock-device.html"><span class="phrase">rio_unlock_device</span></a></span><span class="refpurpose"> — 
+     Releases host device lock for specified device
+ </span></dt><dt><span class="refentrytitle"><a href="API-rio-route-add-entry.html"><span class="phrase">rio_route_add_entry</span></a></span><span class="refpurpose"> — 
+     Add a route entry to a switch routing table
+ </span></dt><dt><span class="refentrytitle"><a href="API-rio-route-get-entry.html"><span class="phrase">rio_route_get_entry</span></a></span><span class="refpurpose"> — 
+     Read a route entry in a switch routing table
+ </span></dt><dt><span class="refentrytitle"><a href="API-rio-get-host-deviceid-lock.html"><span class="phrase">rio_get_host_deviceid_lock</span></a></span><span class="refpurpose"> — 
+     Reads the Host Device ID Lock CSR on a device
+ </span></dt><dt><span class="refentrytitle"><a href="API-rio-enum-peer.html"><span class="phrase">rio_enum_peer</span></a></span><span class="refpurpose"> — 
+     Recursively enumerate a RIO network through a master port
+ </span></dt><dt><span class="refentrytitle"><a href="API-rio-enum-complete.html"><span class="phrase">rio_enum_complete</span></a></span><span class="refpurpose"> — 
+     Tests if enumeration of a network is complete
+ </span></dt><dt><span class="refentrytitle"><a href="API-rio-disc-peer.html"><span class="phrase">rio_disc_peer</span></a></span><span class="refpurpose"> — 
+     Recursively discovers a RIO network through a master port
+ </span></dt><dt><span class="refentrytitle"><a href="API-rio-mport-is-active.html"><span class="phrase">rio_mport_is_active</span></a></span><span class="refpurpose"> — 
+     Tests if master port link is active
+ </span></dt><dt><span class="refentrytitle"><a href="API-rio-alloc-net.html"><span class="phrase">rio_alloc_net</span></a></span><span class="refpurpose"> — 
+     Allocate and configure a new RIO network
+ </span></dt><dt><span class="refentrytitle"><a href="API-rio-update-route-tables.html"><span class="phrase">rio_update_route_tables</span></a></span><span class="refpurpose"> — 
+     Updates route tables in switches
+ </span></dt><dt><span class="refentrytitle"><a href="API-rio-init-em.html"><span class="phrase">rio_init_em</span></a></span><span class="refpurpose"> — 
+     Initializes RIO Error Management (for switches)
+ </span></dt><dt><span class="refentrytitle"><a href="API-rio-pw-enable.html"><span class="phrase">rio_pw_enable</span></a></span><span class="refpurpose"> — 
+     Enables/disables port-write handling by a master port
+ </span></dt><dt><span class="refentrytitle"><a href="API-rio-enum-mport.html"><span class="phrase">rio_enum_mport</span></a></span><span class="refpurpose"> — 
+     Start enumeration through a master port
+ </span></dt><dt><span class="refentrytitle"><a href="API-rio-build-route-tables.html"><span class="phrase">rio_build_route_tables</span></a></span><span class="refpurpose"> — 
+     Generate route tables from switch route entries
+ </span></dt><dt><span class="refentrytitle"><a href="API-rio-enum-timeout.html"><span class="phrase">rio_enum_timeout</span></a></span><span class="refpurpose"> — 
+     Signal that enumeration timed out
+ </span></dt><dt><span class="refentrytitle"><a href="API-rio-disc-mport.html"><span class="phrase">rio_disc_mport</span></a></span><span class="refpurpose"> — 
+     Start discovery through a master port
+ </span></dt></dl></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="API-struct-rio-switch-ops.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="internals.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="API-rio-get-device-id.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"><span class="phrase">struct rio_switch_ops</span> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> <span class="phrase">rio_get_device_id</span></td></tr></table></div></body></html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>struct regulator_desc</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="Voltage and current regulator API" /><link rel="up" href="api.html" title="Chapter 5. API reference" /><link rel="prev" href="API-struct-regulator-ops.html" title="struct regulator_ops" /><link rel="next" href="API-regulator-get.html" title="regulator_get" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"><span class="phrase">struct regulator_desc</span></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="API-struct-regulator-ops.html">Prev</a> </td><th width="60%" align="center">Chapter 5. API reference</th><td width="20%" align="right"> <a accesskey="n" href="API-regulator-get.html">Next</a></td></tr></table><hr /></div><div class="refentry"><a id="API-struct-regulator-desc"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>struct regulator_desc — 
+     Regulator descriptor
+ </p></div><div class="refsynopsisdiv"><h2>Synopsis</h2><pre class="programlisting">
+struct regulator_desc {
+  const char * name;
+  int id;
+  unsigned n_voltages;
+  struct regulator_ops * ops;
+  int irq;
+  enum regulator_type type;
+  struct module * owner;
+};  </pre></div><div class="refsect1"><a id="idp51801372"></a><h2>Members</h2><div class="variablelist"><dl class="variablelist"><dt><span class="term">name</span></dt><dd><p>
+   Identifying name for the regulator.
+      </p></dd><dt><span class="term">id</span></dt><dd><p>
+   Numerical identifier for the regulator.
+      </p></dd><dt><span class="term">n_voltages</span></dt><dd><p>
+   Number of selectors available for ops.<code class="function">list_voltage</code>.
+      </p></dd><dt><span class="term">ops</span></dt><dd><p>
+   Regulator operations table.
+      </p></dd><dt><span class="term">irq</span></dt><dd><p>
+   Interrupt number for the regulator.
+      </p></dd><dt><span class="term">type</span></dt><dd><p>
+   Indicates if the regulator is a voltage or current regulator.
+      </p></dd><dt><span class="term">owner</span></dt><dd><p>
+   Module providing the regulator, used for refcounting.
+      </p></dd></dl></div></div><div class="refsect1"><a id="idp51807156"></a><h2>Description</h2><p>
+   </p><p>
+
+   Each regulator registered with the core is described with a structure of
+   this type.
+</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="API-struct-regulator-ops.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="api.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="API-regulator-get.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"><span class="phrase">struct regulator_ops</span> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> <span class="phrase">regulator_get</span></td></tr></table></div></body></html>

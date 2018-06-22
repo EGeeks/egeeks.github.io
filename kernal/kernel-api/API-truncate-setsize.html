@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>truncate_setsize</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="The Linux Kernel API" /><link rel="up" href="ch04s03.html" title="More Memory Management Functions" /><link rel="prev" href="API-truncate-pagecache.html" title="truncate_pagecache" /><link rel="next" href="API-vmtruncate.html" title="vmtruncate" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"><span class="phrase">truncate_setsize</span></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="API-truncate-pagecache.html">Prev</a> </td><th width="60%" align="center">More Memory Management Functions</th><td width="20%" align="right"> <a accesskey="n" href="API-vmtruncate.html">Next</a></td></tr></table><hr /></div><div class="refentry"><a id="API-truncate-setsize"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>truncate_setsize — 
+     update inode and pagecache for a new file size
+ </p></div><div class="refsynopsisdiv"><h2>Synopsis</h2><div class="funcsynopsis"><table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;"><tr><td><code class="funcdef">void <strong class="fsfunc">truncate_setsize </strong>(</code></td><td>struct inode * <var class="pdparam">inode</var>, </td></tr><tr><td> </td><td>loff_t <var class="pdparam">newsize</var><code>)</code>;</td></tr></table><div class="funcprototype-spacer"> </div></div></div><div class="refsect1"><a id="idp40956436"></a><h2>Arguments</h2><div class="variablelist"><dl class="variablelist"><dt><span class="term"><em class="parameter"><code>inode</code></em></span></dt><dd><p>
+     inode
+    </p></dd><dt><span class="term"><em class="parameter"><code>newsize</code></em></span></dt><dd><p>
+     new file size
+    </p></dd></dl></div></div><div class="refsect1"><a id="idp40959052"></a><h2>Description</h2><p>
+   truncate_setsize updates i_size and performs pagecache truncation (if
+   necessary) to <em class="parameter"><code>newsize</code></em>. It will be typically be called from the filesystem's
+   setattr function when ATTR_SIZE is passed in.
+   </p><p>
+
+   Must be called with inode_mutex held and before all filesystem specific
+   block truncation has been performed.
+</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="API-truncate-pagecache.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch04s03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="API-vmtruncate.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"><span class="phrase">truncate_pagecache</span> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> <span class="phrase">vmtruncate</span></td></tr></table></div></body></html>

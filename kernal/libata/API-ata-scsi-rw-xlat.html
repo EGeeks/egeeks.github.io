@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>ata_scsi_rw_xlat</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="libATA Developer's Guide" /><link rel="up" href="libataScsiInt.html" title="Chapter 6. libata SCSI translation/emulation" /><link rel="prev" href="API-ata-scsi-verify-xlat.html" title="ata_scsi_verify_xlat" /><link rel="next" href="API-ata-scsi-translate.html" title="ata_scsi_translate" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"><span class="phrase">ata_scsi_rw_xlat</span></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="API-ata-scsi-verify-xlat.html">Prev</a> </td><th width="60%" align="center">Chapter 6. libata SCSI translation/emulation</th><td width="20%" align="right"> <a accesskey="n" href="API-ata-scsi-translate.html">Next</a></td></tr></table><hr /></div><div class="refentry"><a id="API-ata-scsi-rw-xlat"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>ata_scsi_rw_xlat — 
+     Translate SCSI r/w command into an ATA one
+ </p></div><div class="refsynopsisdiv"><h2>Synopsis</h2><div class="funcsynopsis"><table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;"><tr><td><code class="funcdef">unsigned int <strong class="fsfunc">ata_scsi_rw_xlat </strong>(</code></td><td>struct ata_queued_cmd * <var class="pdparam">qc</var><code>)</code>;</td></tr></table><div class="funcprototype-spacer"> </div></div></div><div class="refsect1"><a id="idp46545796"></a><h2>Arguments</h2><div class="variablelist"><dl class="variablelist"><dt><span class="term"><em class="parameter"><code>qc</code></em></span></dt><dd><p>
+     Storage for translated ATA taskfile
+    </p></dd></dl></div></div><div class="refsect1"><a id="idp46547412"></a><h2>Description</h2><p>
+   Converts any of six SCSI read/write commands into the
+   ATA counterpart, including starting sector (LBA),
+   sector count, and taking into account the device's LBA48
+   support.
+   </p><p>
+
+   Commands <code class="constant">READ_6</code>, <code class="constant">READ_10</code>, <code class="constant">READ_16</code>, <code class="constant">WRITE_6</code>, <code class="constant">WRITE_10</code>, and
+   <code class="constant">WRITE_16</code> are currently supported.
+</p></div><div class="refsect1"><a id="idp46549644"></a><h2>LOCKING</h2><p>
+   spin_lock_irqsave(host lock)
+</p></div><div class="refsect1"><a id="idp46550276"></a><h2>RETURNS</h2><p>
+   Zero on success, non-zero on error.
+</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="API-ata-scsi-verify-xlat.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="libataScsiInt.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="API-ata-scsi-translate.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"><span class="phrase">ata_scsi_verify_xlat</span> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> <span class="phrase">ata_scsi_translate</span></td></tr></table></div></body></html>

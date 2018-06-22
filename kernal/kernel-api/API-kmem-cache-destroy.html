@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>kmem_cache_destroy</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="The Linux Kernel API" /><link rel="up" href="mm.html#idp39831316" title="The Slab Cache" /><link rel="prev" href="API-kmem-cache-shrink.html" title="kmem_cache_shrink" /><link rel="next" href="API-kmem-cache-alloc.html" title="kmem_cache_alloc" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"><span class="phrase">kmem_cache_destroy</span></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="API-kmem-cache-shrink.html">Prev</a> </td><th width="60%" align="center">The Slab Cache</th><td width="20%" align="right"> <a accesskey="n" href="API-kmem-cache-alloc.html">Next</a></td></tr></table><hr /></div><div class="refentry"><a id="API-kmem-cache-destroy"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>kmem_cache_destroy — 
+     delete a cache
+ </p></div><div class="refsynopsisdiv"><h2>Synopsis</h2><div class="funcsynopsis"><table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;"><tr><td><code class="funcdef">void <strong class="fsfunc">kmem_cache_destroy </strong>(</code></td><td>struct kmem_cache * <var class="pdparam">cachep</var><code>)</code>;</td></tr></table><div class="funcprototype-spacer"> </div></div></div><div class="refsect1"><a id="idp39905340"></a><h2>Arguments</h2><div class="variablelist"><dl class="variablelist"><dt><span class="term"><em class="parameter"><code>cachep</code></em></span></dt><dd><p>
+     the cache to destroy
+    </p></dd></dl></div></div><div class="refsect1"><a id="idp39906956"></a><h2>Description</h2><p>
+   Remove a <span class="structname">struct kmem_cache</span> object from the slab cache.
+   </p><p>
+
+   It is expected this function will be called by a module when it is
+   unloaded.  This will remove the cache completely, and avoid a duplicate
+   cache being allocated each time a module is loaded and unloaded, if the
+   module doesn't have persistent in-kernel storage across loads and unloads.
+   </p><p>
+
+   The cache must be empty before calling this function.
+   </p><p>
+
+   The caller must guarantee that no one will allocate memory from the cache
+   during the <code class="function">kmem_cache_destroy</code>.
+</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="API-kmem-cache-shrink.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="mm.html#idp39831316">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="API-kmem-cache-alloc.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"><span class="phrase">kmem_cache_shrink</span> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> <span class="phrase">kmem_cache_alloc</span></td></tr></table></div></body></html>

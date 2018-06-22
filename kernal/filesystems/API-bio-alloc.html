@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>bio_alloc</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="Linux Filesystems API" /><link rel="up" href="other_functions.html" title="Other Functions" /><link rel="prev" href="API-bio-alloc-bioset.html" title="bio_alloc_bioset" /><link rel="next" href="API-bio-kmalloc.html" title="bio_kmalloc" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"><span class="phrase">bio_alloc</span></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="API-bio-alloc-bioset.html">Prev</a> </td><th width="60%" align="center">Other Functions</th><td width="20%" align="right"> <a accesskey="n" href="API-bio-kmalloc.html">Next</a></td></tr></table><hr /></div><div class="refentry"><a id="API-bio-alloc"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>bio_alloc — 
+     allocate a new bio, memory pool backed
+ </p></div><div class="refsynopsisdiv"><h2>Synopsis</h2><div class="funcsynopsis"><table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;"><tr><td><code class="funcdef">struct bio * <strong class="fsfunc">bio_alloc </strong>(</code></td><td>gfp_t <var class="pdparam">gfp_mask</var>, </td></tr><tr><td> </td><td>int <var class="pdparam">nr_iovecs</var><code>)</code>;</td></tr></table><div class="funcprototype-spacer"> </div></div></div><div class="refsect1"><a id="idp24996724"></a><h2>Arguments</h2><div class="variablelist"><dl class="variablelist"><dt><span class="term"><em class="parameter"><code>gfp_mask</code></em></span></dt><dd><p>
+     allocation mask to use
+    </p></dd><dt><span class="term"><em class="parameter"><code>nr_iovecs</code></em></span></dt><dd><p>
+     number of iovecs
+    </p></dd></dl></div></div><div class="refsect1"><a id="idp24999244"></a><h2>Description</h2><p>
+   bio_alloc will allocate a bio and associated bio_vec array that can hold
+   at least <em class="parameter"><code>nr_iovecs</code></em> entries. Allocations will be done from the
+   fs_bio_set. Also see <em class="parameter"><code>bio_alloc_bioset</code></em> and <em class="parameter"><code>bio_kmalloc</code></em>.
+   </p><p>
+
+   If <code class="constant">__GFP_WAIT</code> is set, then bio_alloc will always be able to allocate
+   a bio. This is due to the mempool guarantees. To make this work, callers
+   must never allocate more than 1 bio at a time from this pool. Callers
+   that need to allocate more than 1 bio must always submit the previously
+   allocated bio for IO before attempting to allocate a new one. Failure to
+   do so can cause livelocks under memory pressure.
+</p></div><div class="refsect1"><a id="idp25001668"></a><h2>RETURNS</h2><p>
+   Pointer to new bio on success, NULL on failure.
+</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="API-bio-alloc-bioset.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="other_functions.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="API-bio-kmalloc.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"><span class="phrase">bio_alloc_bioset</span> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> <span class="phrase">bio_kmalloc</span></td></tr></table></div></body></html>

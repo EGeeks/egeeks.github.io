@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>dmi_get_date</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="The Linux Kernel API" /><link rel="up" href="firmware.html#idp43254828" title="DMI Interfaces" /><link rel="prev" href="API-dmi-find-device.html" title="dmi_find_device" /><link rel="next" href="API-dmi-walk.html" title="dmi_walk" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"><span class="phrase">dmi_get_date</span></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="API-dmi-find-device.html">Prev</a> </td><th width="60%" align="center">DMI Interfaces</th><td width="20%" align="right"> <a accesskey="n" href="API-dmi-walk.html">Next</a></td></tr></table><hr /></div><div class="refentry"><a id="API-dmi-get-date"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>dmi_get_date — 
+     parse a DMI date
+ </p></div><div class="refsynopsisdiv"><h2>Synopsis</h2><div class="funcsynopsis"><table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;"><tr><td><code class="funcdef">bool <strong class="fsfunc">dmi_get_date </strong>(</code></td><td>int <var class="pdparam">field</var>, </td></tr><tr><td> </td><td>int * <var class="pdparam">yearp</var>, </td></tr><tr><td> </td><td>int * <var class="pdparam">monthp</var>, </td></tr><tr><td> </td><td>int * <var class="pdparam">dayp</var><code>)</code>;</td></tr></table><div class="funcprototype-spacer"> </div></div></div><div class="refsect1"><a id="idp43302580"></a><h2>Arguments</h2><div class="variablelist"><dl class="variablelist"><dt><span class="term"><em class="parameter"><code>field</code></em></span></dt><dd><p>
+     data index (see enum dmi_field)
+    </p></dd><dt><span class="term"><em class="parameter"><code>yearp</code></em></span></dt><dd><p>
+     optional out parameter for the year
+    </p></dd><dt><span class="term"><em class="parameter"><code>monthp</code></em></span></dt><dd><p>
+     optional out parameter for the month
+    </p></dd><dt><span class="term"><em class="parameter"><code>dayp</code></em></span></dt><dd><p>
+     optional out parameter for the day
+    </p></dd></dl></div></div><div class="refsect1"><a id="idp43307324"></a><h2>Description</h2><p>
+   The date field is assumed to be in the form resembling
+   [mm[/dd]]/yy[yy] and the result is stored in the out
+   parameters any or all of which can be omitted.
+   </p><p>
+
+   If the field doesn't exist, all out parameters are set to zero
+   and false is returned.  Otherwise, true is returned with any
+   invalid part of date set to zero.
+   </p><p>
+
+   On return, year, month and day are guaranteed to be in the
+   range of [0,9999], [0,12] and [0,31] respectively.
+</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="API-dmi-find-device.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="firmware.html#idp43254828">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="API-dmi-walk.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"><span class="phrase">dmi_find_device</span> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> <span class="phrase">dmi_walk</span></td></tr></table></div></body></html>

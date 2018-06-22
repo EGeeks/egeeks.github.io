@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>idr_remove_all</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="The Linux Kernel API" /><link rel="up" href="idr.html" title="idr/ida Functions" /><link rel="prev" href="API-idr-remove.html" title="idr_remove" /><link rel="next" href="API-idr-destroy.html" title="idr_destroy" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"><span class="phrase">idr_remove_all</span></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="API-idr-remove.html">Prev</a> </td><th width="60%" align="center">idr/ida Functions</th><td width="20%" align="right"> <a accesskey="n" href="API-idr-destroy.html">Next</a></td></tr></table><hr /></div><div class="refentry"><a id="API-idr-remove-all"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>idr_remove_all — 
+     remove all ids from the given idr tree
+ </p></div><div class="refsynopsisdiv"><h2>Synopsis</h2><div class="funcsynopsis"><table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;"><tr><td><code class="funcdef">void <strong class="fsfunc">idr_remove_all </strong>(</code></td><td>struct idr * <var class="pdparam">idp</var><code>)</code>;</td></tr></table><div class="funcprototype-spacer"> </div></div></div><div class="refsect1"><a id="idp39716628"></a><h2>Arguments</h2><div class="variablelist"><dl class="variablelist"><dt><span class="term"><em class="parameter"><code>idp</code></em></span></dt><dd><p>
+     idr handle
+    </p></dd></dl></div></div><div class="refsect1"><a id="idp39718220"></a><h2>Description</h2><p>
+   <code class="function">idr_destroy</code> only frees up unused, cached idp_layers, but this
+   function will remove all id mappings and leave all idp_layers
+   unused.
+   </p><p>
+
+   A typical clean-up sequence for objects stored in an idr tree will
+   use <code class="function">idr_for_each</code> to free all objects, if necessay, then
+   <code class="function">idr_remove_all</code> to remove all ids, and <code class="function">idr_destroy</code> to free
+   up the cached idr_layers.
+</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="API-idr-remove.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="idr.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="API-idr-destroy.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"><span class="phrase">idr_remove</span> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> <span class="phrase">idr_destroy</span></td></tr></table></div></body></html>

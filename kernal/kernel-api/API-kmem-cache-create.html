@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>kmem_cache_create</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="The Linux Kernel API" /><link rel="up" href="mm.html#idp39831316" title="The Slab Cache" /><link rel="prev" href="API-kzalloc-node.html" title="kzalloc_node" /><link rel="next" href="API-kmem-cache-shrink.html" title="kmem_cache_shrink" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"><span class="phrase">kmem_cache_create</span></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="API-kzalloc-node.html">Prev</a> </td><th width="60%" align="center">The Slab Cache</th><td width="20%" align="right"> <a accesskey="n" href="API-kmem-cache-shrink.html">Next</a></td></tr></table><hr /></div><div class="refentry"><a id="API-kmem-cache-create"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>kmem_cache_create — 
+  Create a cache.
+ </p></div><div class="refsynopsisdiv"><h2>Synopsis</h2><div class="funcsynopsis"><table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;"><tr><td><code class="funcdef">struct kmem_cache * <strong class="fsfunc">kmem_cache_create </strong>(</code></td><td>const char * <var class="pdparam">name</var>, </td></tr><tr><td> </td><td>size_t <var class="pdparam">size</var>, </td></tr><tr><td> </td><td>size_t <var class="pdparam">align</var>, </td></tr><tr><td> </td><td>unsigned long <var class="pdparam">flags</var>, </td></tr><tr><td> </td><td>void (*<var class="pdparam">ctor</var>)
+     <code>(</code>void *<code>)</code><code>)</code>;</td></tr></table><div class="funcprototype-spacer"> </div></div></div><div class="refsect1"><a id="idp39884516"></a><h2>Arguments</h2><div class="variablelist"><dl class="variablelist"><dt><span class="term"><em class="parameter"><code>name</code></em></span></dt><dd><p>
+     A string which is used in /proc/slabinfo to identify this cache.
+    </p></dd><dt><span class="term"><em class="parameter"><code>size</code></em></span></dt><dd><p>
+     The size of objects to be created in this cache.
+    </p></dd><dt><span class="term"><em class="parameter"><code>align</code></em></span></dt><dd><p>
+     The required alignment for the objects.
+    </p></dd><dt><span class="term"><em class="parameter"><code>flags</code></em></span></dt><dd><p>
+     SLAB flags
+    </p></dd><dt><span class="term"><em class="parameter"><code>ctor</code></em></span></dt><dd><p>
+     A constructor for the objects.
+    </p></dd></dl></div></div><div class="refsect1"><a id="idp39890308"></a><h2>Description</h2><p>
+   Returns a ptr to the cache on success, NULL on failure.
+   Cannot be called within a int, but can be interrupted.
+   The <em class="parameter"><code>ctor</code></em> is run when new pages are allocated by the cache.
+   </p><p>
+
+   <em class="parameter"><code>name</code></em> must be valid until the cache is destroyed. This implies that
+   the module calling this has to destroy the cache before getting unloaded.
+   </p><p>
+
+   The flags are
+   </p><p>
+
+   <code class="constant">SLAB_POISON</code> - Poison the slab with a known test pattern (a5a5a5a5)
+   to catch references to uninitialised memory.
+   </p><p>
+
+   <code class="constant">SLAB_RED_ZONE</code> - Insert `Red' zones around the allocated memory to check
+   for buffer overruns.
+   </p><p>
+
+   <code class="constant">SLAB_HWCACHE_ALIGN</code> - Align the objects in this cache to a hardware
+   cacheline.  This can be beneficial if you're counting cycles as closely
+   as davem.
+</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="API-kzalloc-node.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="mm.html#idp39831316">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="API-kmem-cache-shrink.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"><span class="phrase">kzalloc_node</span> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> <span class="phrase">kmem_cache_shrink</span></td></tr></table></div></body></html>

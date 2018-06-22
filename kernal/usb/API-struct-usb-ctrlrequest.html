@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>struct usb_ctrlrequest</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="The Linux-USB Host Side API" /><link rel="up" href="types.html" title="Chapter 3. USB-Standard Types" /><link rel="prev" href="types.html" title="Chapter 3. USB-Standard Types" /><link rel="next" href="API-usb-endpoint-num.html" title="usb_endpoint_num" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"><span class="phrase">struct usb_ctrlrequest</span></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="types.html">Prev</a> </td><th width="60%" align="center">Chapter 3. USB-Standard Types</th><td width="20%" align="right"> <a accesskey="n" href="API-usb-endpoint-num.html">Next</a></td></tr></table><hr /></div><div class="refentry"><a id="API-struct-usb-ctrlrequest"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>struct usb_ctrlrequest — 
+  SETUP data for a USB device control request
+ </p></div><div class="refsynopsisdiv"><h2>Synopsis</h2><pre class="programlisting">
+struct usb_ctrlrequest {
+  __u8 bRequestType;
+  __u8 bRequest;
+  __le16 wValue;
+  __le16 wIndex;
+  __le16 wLength;
+};  </pre></div><div class="refsect1"><a id="idp21255556"></a><h2>Members</h2><div class="variablelist"><dl class="variablelist"><dt><span class="term">bRequestType</span></dt><dd><p>
+matches the USB bmRequestType field
+      </p></dd><dt><span class="term">bRequest</span></dt><dd><p>
+matches the USB bRequest field
+      </p></dd><dt><span class="term">wValue</span></dt><dd><p>
+matches the USB wValue field (le16 byte order)
+      </p></dd><dt><span class="term">wIndex</span></dt><dd><p>
+matches the USB wIndex field (le16 byte order)
+      </p></dd><dt><span class="term">wLength</span></dt><dd><p>
+matches the USB wLength field (le16 byte order)
+      </p></dd></dl></div></div><div class="refsect1"><a id="idp21785148"></a><h2>Description</h2><p>
+   This structure is used to send control requests to a USB device.  It matches
+   the different fields of the USB 2.0 Spec section 9.3, table 9-2.  See the
+   USB spec for a fuller description of the different fields, and what they are
+   used for.
+   </p><p>
+
+   Note that the driver for any interface can issue control requests.
+   For most devices, interfaces don't coordinate with each other, so
+   such requests may be made at any time.
+</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="types.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="types.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="API-usb-endpoint-num.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 3. USB-Standard Types </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> <span class="phrase">usb_endpoint_num</span></td></tr></table></div></body></html>

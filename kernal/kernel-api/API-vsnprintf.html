@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>vsnprintf</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /><link rel="home" href="index.html" title="The Linux Kernel API" /><link rel="up" href="libc.html#idp38761860" title="String Conversions" /><link rel="prev" href="API-simple-strtoll.html" title="simple_strtoll" /><link rel="next" href="API-vscnprintf.html" title="vscnprintf" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"><span class="phrase">vsnprintf</span></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="API-simple-strtoll.html">Prev</a> </td><th width="60%" align="center">String Conversions</th><td width="20%" align="right"> <a accesskey="n" href="API-vscnprintf.html">Next</a></td></tr></table><hr /></div><div class="refentry"><a id="API-vsnprintf"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>vsnprintf — 
+     Format a string and place it in a buffer
+ </p></div><div class="refsynopsisdiv"><h2>Synopsis</h2><div class="funcsynopsis"><table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;"><tr><td><code class="funcdef">int <strong class="fsfunc">vsnprintf </strong>(</code></td><td>char * <var class="pdparam">buf</var>, </td></tr><tr><td> </td><td>size_t <var class="pdparam">size</var>, </td></tr><tr><td> </td><td>const char * <var class="pdparam">fmt</var>, </td></tr><tr><td> </td><td>va_list <var class="pdparam">args</var><code>)</code>;</td></tr></table><div class="funcprototype-spacer"> </div></div></div><div class="refsect1"><a id="idp38802900"></a><h2>Arguments</h2><div class="variablelist"><dl class="variablelist"><dt><span class="term"><em class="parameter"><code>buf</code></em></span></dt><dd><p>
+     The buffer to place the result into
+    </p></dd><dt><span class="term"><em class="parameter"><code>size</code></em></span></dt><dd><p>
+     The size of the buffer, including the trailing null space
+    </p></dd><dt><span class="term"><em class="parameter"><code>fmt</code></em></span></dt><dd><p>
+     The format string to use
+    </p></dd><dt><span class="term"><em class="parameter"><code>args</code></em></span></dt><dd><p>
+     Arguments for the format string
+    </p></dd></dl></div></div><div class="refsect1"><a id="idp38807508"></a><h2>Description</h2><p>
+   This function follows C99 vsnprintf, but has some extensions:
+   <code class="constant">pS</code> output the name of a text symbol with offset
+   <code class="constant">ps</code> output the name of a text symbol without offset
+   <code class="constant">pF</code> output the name of a function pointer with its offset
+   <code class="constant">pf</code> output the name of a function pointer without its offset
+   <code class="constant">pB</code> output the name of a backtrace symbol with its offset
+   <code class="constant">pR</code> output the address range in a struct resource with decoded flags
+   <code class="constant">pr</code> output the address range in a struct resource with raw flags
+   <code class="constant">pM</code> output a 6-byte MAC address with colons
+   <code class="constant">pm</code> output a 6-byte MAC address without colons
+   <code class="constant">pI4</code> print an IPv4 address without leading zeros
+   <code class="constant">pi4</code> print an IPv4 address with leading zeros
+   <code class="constant">pI6</code> print an IPv6 address with colons
+   <code class="constant">pi6</code> print an IPv6 address without colons
+   <code class="constant">pI6c</code> print an IPv6 address as specified by
+</p></div><div class="refsect1"><a id="idp38811692"></a><h2>http</h2><p>
+   //tools.ietf.org/html/draft-ietf-6man-text-addr-representation-00
+   <code class="constant">pU</code>[bBlL] print a UUID/GUID in big or little endian using lower or upper
+   case.
+   <code class="constant">n</code> is ignored
+   </p><p>
+
+   The return value is the number of characters which would
+   be generated for the given input, excluding the trailing
+   '\0', as per ISO C99. If you want to have the exact
+   number of characters written into <em class="parameter"><code>buf</code></em> as return value
+   (not including the trailing '\0'), use <code class="function">vscnprintf</code>. If the
+   return is greater than or equal to <em class="parameter"><code>size</code></em>, the resulting
+   string is truncated.
+   </p><p>
+
+   If you're not already dealing with a va_list consider using <code class="function">snprintf</code>.
+</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="API-simple-strtoll.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="libc.html#idp38761860">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="API-vscnprintf.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"><span class="phrase">simple_strtoll</span> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> <span class="phrase">vscnprintf</span></td></tr></table></div></body></html>
